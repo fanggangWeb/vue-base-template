@@ -1,0 +1,29 @@
+/**
+ * color
+ * @author ydr.me
+ * @create 2019-09-26 20:18:06
+ * @update 2019-09-26 20:18:06
+ */
+.color-primary {
+  color: #00b2f8 !important; }
+
+.color-primary-light {
+  color: #e6f7fe !important; }
+
+.color-success {
+  color: #00d38d !important; }
+
+.color-success-light {
+  color: #e6fbf4 !important; }
+
+.color-warning {
+  color: #ffba00 !important; }
+
+.color-warning-light {
+  color: #fff8e6 !important; }
+
+.color-danger {
+  color: #fe694a !important; }
+
+.color-danger-light {
+  color: #fff0ed !important; }

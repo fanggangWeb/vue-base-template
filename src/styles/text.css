@@ -1,0 +1,50 @@
+/**
+ * text
+ * @author ydr.me
+ * @create 2019-09-28 18:33:43
+ * @update 2019-09-28 18:33:43
+ */
+.text-left {
+  text-align: left !important; }
+
+.text-right {
+  text-align: right !important; }
+
+.text-center {
+  text-align: center !important; }
+
+.text-justify {
+  text-align: justify !important; }
+
+.text-start {
+  text-align: start !important; }
+
+.text-end {
+  text-align: end !important; }
+
+.text-wrap {
+  white-space: normal !important; }
+
+.text-no-wrap {
+  white-space: nowrap !important; }
+
+.text-break {
+  overflow-wrap: break-word !important;
+  word-break: break-word !important; }
+
+.text-truncate {
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important; }
+
+.text-none {
+  text-transform: none !important; }
+
+.text-capitalize {
+  text-transform: capitalize !important; }
+
+.text-lowercase {
+  text-transform: lowercase !important; }
+
+.text-uppercase {
+  text-transform: uppercase !important; }

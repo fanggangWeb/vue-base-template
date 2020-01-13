@@ -1,0 +1,53 @@
+// 黑色
+$app-black-100: rgba(0, 0, 0, 1);
+$app-black-85: rgba(0, 0, 0, 0.85);
+$app-black-65: rgba(0, 0, 0, 0.65);
+$app-black-45: rgba(0, 0, 0, 0.45);
+$app-black-25: rgba(0, 0, 0, 0.25);
+$app-black-15: rgba(0, 0, 0, 0.15);
+$app-black-09: rgba(0, 0, 0, 0.09);
+$app-black-04: rgba(0, 0, 0, 0.04);
+$app-black-02: rgba(0, 0, 0, 0.02);
+$app-black-00: rgba(0, 0, 0, 0);
+
+// 白色
+$app-white-100: rgba(255, 255, 255, 1);
+$app-white-85: rgba(255, 255, 255, 0.85);
+$app-white-65: rgba(255, 255, 255, 0.65);
+$app-white-45: rgba(255, 255, 255, 0.45);
+$app-white-25: rgba(255, 255, 255, 0.25);
+$app-white-15: rgba(255, 255, 255, 0.15);
+$app-white-09: rgba(255, 255, 255, 0.09);
+$app-white-04: rgba(255, 255, 255, 0.04);
+$app-white-00: rgba(255, 255, 255, 0);
+
+// 功能色
+$app-primary-color: rgba(0, 178, 248, 1); // 主要深色
+$app-primary-light: mix($app-primary-color, $app-white-100, 10%); // 主要浅色
+$app-success-color: rgba(0, 211, 141, 1); // 成功深色
+$app-success-light: mix($app-success-color, $app-white-100, 10%); // 成功浅色
+$app-warning-color: rgba(255, 186, 0, 1); // 警告深色
+$app-warning-light: mix($app-warning-color, $app-white-100, 10%); // 警告浅色
+$app-danger-color: rgba(254, 105, 74, 1); // 危险深色
+$app-danger-light: mix($app-danger-color, $app-white-100, 10%); // 危险浅色
+
+// ================================= old =================================
+
+// 背景色
+$app-background-color: #eef3f9;
+
+// 宽度
+$app-body-width: 1280px; // 主体区域最小宽度
+$app-aside-width: 200px; // 侧边栏区域宽度
+$app-main-width: $app-body-width - $app-aside-width; // 主要区域宽度
+
+// 高度
+$app-height-small: 28px; // 表单次级高度
+$app-height-base: 36px; // 表单基本高度
+
+// 间隔
+$app-offset-xsmall: 8px; // 超小间距：输入框与提示文本的间距
+$app-offset-small: 16px; // 小间距：输入框与字段的间距
+$app-offset-base: 24px; // 基本间距：对话框内容的内间距
+$app-offset-large: 32px; // 大间距：表单元件的间距
+$app-offset-xlarge: 40px; // 超大间距：对话框正文上边距

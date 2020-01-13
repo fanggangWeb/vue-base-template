@@ -1,0 +1,44 @@
+/**
+ * offset
+ * @author ydr.me
+ * @create 2019-09-26 17:02:15
+ * @update 2019-09-26 17:02:15
+ */
+
+@import './variables';
+
+$size-map: (
+    'xsmall': $app-offset-xsmall,
+    'small': $app-offset-small,
+    'base': $app-offset-base,
+    'large': $app-offset-large,
+    'xlarge': $app-offset-xlarge
+);
+$margin-map: (
+    'mt': 'margin-top',
+    'mr': 'margin-right',
+    'mb': 'margin-bottom',
+    'ml': 'margin-left'
+);
+$padding-map: (
+    'pt': 'padding-top',
+    'pr': 'padding-right',
+    'pb': 'padding-bottom',
+    'pl': 'padding-left'
+);
+
+@each $name, $key in $margin-map {
+    @each $suffix, $value in $size-map {
+        .#{$name}-#{$suffix} {
+            #{$key}: #{$value} !important;
+        }
+    }
+}
+
+@each $name, $key in $padding-map {
+    @each $suffix, $value in $size-map {
+        .#{$name}-#{$suffix} {
+            #{$key}: #{$value} !important;
+        }
+    }
+}

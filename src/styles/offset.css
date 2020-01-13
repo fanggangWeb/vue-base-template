@@ -1,0 +1,125 @@
+/**
+ * offset
+ * @author ydr.me
+ * @create 2019-09-26 17:02:15
+ * @update 2019-09-26 17:02:15
+ */
+.mt-xsmall {
+  margin-top: 8px !important; }
+
+.mt-small {
+  margin-top: 16px !important; }
+
+.mt-base {
+  margin-top: 24px !important; }
+
+.mt-large {
+  margin-top: 32px !important; }
+
+.mt-xlarge {
+  margin-top: 40px !important; }
+
+.mr-xsmall {
+  margin-right: 8px !important; }
+
+.mr-small {
+  margin-right: 16px !important; }
+
+.mr-base {
+  margin-right: 24px !important; }
+
+.mr-large {
+  margin-right: 32px !important; }
+
+.mr-xlarge {
+  margin-right: 40px !important; }
+
+.mb-xsmall {
+  margin-bottom: 8px !important; }
+
+.mb-small {
+  margin-bottom: 16px !important; }
+
+.mb-base {
+  margin-bottom: 24px !important; }
+
+.mb-large {
+  margin-bottom: 32px !important; }
+
+.mb-xlarge {
+  margin-bottom: 40px !important; }
+
+.ml-xsmall {
+  margin-left: 8px !important; }
+
+.ml-small {
+  margin-left: 16px !important; }
+
+.ml-base {
+  margin-left: 24px !important; }
+
+.ml-large {
+  margin-left: 32px !important; }
+
+.ml-xlarge {
+  margin-left: 40px !important; }
+
+.pt-xsmall {
+  padding-top: 8px !important; }
+
+.pt-small {
+  padding-top: 16px !important; }
+
+.pt-base {
+  padding-top: 24px !important; }
+
+.pt-large {
+  padding-top: 32px !important; }
+
+.pt-xlarge {
+  padding-top: 40px !important; }
+
+.pr-xsmall {
+  padding-right: 8px !important; }
+
+.pr-small {
+  padding-right: 16px !important; }
+
+.pr-base {
+  padding-right: 24px !important; }
+
+.pr-large {
+  padding-right: 32px !important; }
+
+.pr-xlarge {
+  padding-right: 40px !important; }
+
+.pb-xsmall {
+  padding-bottom: 8px !important; }
+
+.pb-small {
+  padding-bottom: 16px !important; }
+
+.pb-base {
+  padding-bottom: 24px !important; }
+
+.pb-large {
+  padding-bottom: 32px !important; }
+
+.pb-xlarge {
+  padding-bottom: 40px !important; }
+
+.pl-xsmall {
+  padding-left: 8px !important; }
+
+.pl-small {
+  padding-left: 16px !important; }
+
+.pl-base {
+  padding-left: 24px !important; }
+
+.pl-large {
+  padding-left: 32px !important; }
+
+.pl-xlarge {
+  padding-left: 40px !important; }
