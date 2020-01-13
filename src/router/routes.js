@@ -18,8 +18,8 @@ export default [
         name: 'Home',
         component: () => import('../views/Home.vue')
     },
-    // {
-    //     path: '*',
-    //     redirect: '/home'
-    // }
+    {
+        path: '/',
+        redirect: '/home'
+    }
 ];

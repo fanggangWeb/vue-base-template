@@ -74,19 +74,19 @@ module.exports = {
     },
     // webpack-dev-server 相关配置
     devServer: {
-        disableHostCheck: true,
-        host: 'localhost',
+        // disableHostCheck: true,
+        host: '0.0.0.0',
         port: 9999,
-        https: false,
-        open: true,
-        hotOnly: false,
+        // https: false,
+        // open: true,
+        // hotOnly: false,
         proxy: {
-            '/api': {
-                target: 'http://jsonplaceholder.typicode.com',  // 要访问接口的域名
-                // secure: false,  // 如果是https接口，需要配置这个参数
-                changeOrigin: true, // 如果接口跨域，需要进行这个参数配置
+            '/api/todos/1': {
+                target: 'https://jsonplaceholder.typicode.com/todos/1',  // 要访问接口的域名
+                secure: false,  // 如果是https接口，需要配置这个参数
+                // changeOrigin: true, // 如果接口跨域，需要进行这个参数配置
                 // pathRewrite: {
-                //     '^/api': ''//重写接口访问
+                //     '^/api': '/' // 重写接口访问
                 // }
             }
         },

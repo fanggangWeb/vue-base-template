@@ -17,6 +17,6 @@ process.env.NODE_ENV === 'development'? baseUrl = "/api" : baseUrl = ""
 export async function getTodo () {
     // const res = await service.get('http://jsonplaceholder.typicode.com/todos/1');
     console.log(baseUrl)
-    const res = await service.get(`${baseUrl}/todos/1`);
+    const res = await service.get(baseUrl+'/todos/1');
     return res.data;
 }
