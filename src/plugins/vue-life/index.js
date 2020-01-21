@@ -1,10 +1,3 @@
-/**
- * index
- * @author ydr.me
- * @create 2020-01-06 10:44:19
- * @update 2020-01-06 10:44:19
- */
-
 'use strict';
 
 const LISTENERS = Symbol();
@@ -23,7 +16,8 @@ export default function vueLife() {
                     registListeners(this, 'activated');
                     registListeners(this, 'deactivated');
                 },
-                created() {},
+                created() {
+                },
                 beforeDestroy() {
                     executeListeners(this, 'beforeDestroy');
                 },

@@ -64,13 +64,20 @@ module.exports = {
     // css相关配置
     css: {
         // 启用 CSS modules
-        requireModuleExtension: true,
+        // requireModuleExtension: true,  // 配置为false element-ui样式失效
         // 是否使用css分离插件
         // extract: true, // 此参数会导致编辑css过后，热加载失效
         // 开启 CSS source maps?
-        sourceMap: false,
+        // sourceMap: false,
         // css预设器配置项
-        loaderOptions: {},
+        loaderOptions: {
+            // 配置sass全局变量
+            sass: {
+                prependData: `
+                    @import "src/styles/_variables.scss";
+                `
+            }
+        },
     },
     // webpack-dev-server 相关配置
     devServer: {
@@ -80,16 +87,16 @@ module.exports = {
         // https: false,
         // open: true,
         // hotOnly: false,
-        proxy: {
-            '/api/todos/1': {
-                target: 'https://jsonplaceholder.typicode.com/todos/1',  // 要访问接口的域名
-                secure: false,  // 如果是https接口，需要配置这个参数
-                // changeOrigin: true, // 如果接口跨域，需要进行这个参数配置
-                // pathRewrite: {
-                //     '^/api': '/' // 重写接口访问
-                // }
-            }
-        },
+        // proxy: {
+        //     '/api': {
+        //         target: 'http://1a4feaf6-7843-4c21-8de3-e236c85f1a5c.mock.pstmn.io',  // 要访问接口的域名
+        //         // secure: false,  // 如果是https接口，需要配置这个参数
+        //         // changeOrigin: true, // 如果接口跨域，需要进行这个参数配置
+        //         pathRewrite: {
+        //             '^/api': '/' // 重写接口访问
+        //         }
+        //     }
+        // },
         before: app => {},
     },
     // runtimeCompiler: true,

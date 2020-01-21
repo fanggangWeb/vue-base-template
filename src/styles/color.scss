@@ -1,27 +1,20 @@
-/**
- * color
- * @author ydr.me
- * @create 2019-09-26 20:18:06
- * @update 2019-09-26 20:18:06
- */
-
 @import './variables';
 
-.funtion-map (
-    primary: @app-primary-color,
-    primary-light: @app-primary-light,
-    success: @app-success-color,
-    success-light: @app-success-light,
-    warning: @app-warning-color,
-    warning-light: @app-warning-light,
-    danger: @app-danger-color,
-    danger-light: @app-danger-light
+$funtion-map: (
+    // primary: $app-primary-color,
+    // primary-light: $app-primary-light,
+    // success: $app-success-color,
+    // success-light: $app-success-light,
+    // warning: $app-warning-color,
+    // warning-light: $app-warning-light,
+    // danger: $app-danger-color,
+    // danger-light: $app-danger-light
 );
 
 .color {
-    @each @name, @value in @funtion-map {
-        &-#{@name} {
-            color: @value !important;
+    @each $name, $value in $funtion-map {
+        &-#{$name} {
+            color: $value !important;
         }
     }
 }

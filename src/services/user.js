@@ -1,10 +1,3 @@
-/**
- * user
- * @author ydr.me
- * @create 2019-11-13 11:30:22
- * @update 2019-11-13 11:30:22
- */
-
 'use strict';
 
 import store from '../store';

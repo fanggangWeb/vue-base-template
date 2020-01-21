@@ -1,10 +1,3 @@
-/**
- * routers
- * @author ydr.me
- * @create 2019-09-17 17:01:19
- * @update 2019-09-17 17:01:19
- */
-
 'use strict';
 
 export default [
@@ -20,6 +13,6 @@ export default [
     },
     {
         path: '/',
-        redirect: '/home'
+        redirect: '/login'
     }
 ];
