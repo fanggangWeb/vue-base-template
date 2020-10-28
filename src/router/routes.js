@@ -15,4 +15,5 @@ export default [
         path: '/',
         redirect: '/login'
     }
+    // 测试git
 ];
