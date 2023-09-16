@@ -1,0 +1,659 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0"><array><dict><key>id</key><integer>66</integer><key>site_name</key><string>爱米推漫画</string><key>domain</key><string>36mh.app</string><key>sort</key><integer>1</integer><key>parse_rule</key><dict><key>bookSourceComment</key><string></string><key>bookSourceGroup</key><string></string><key>bookSourceName</key><string>爱米推漫画</string><key>bookSourceType</key><integer>2</integer><key>bookSourceUrl</key><string>36mh.app</string><key>bookUrlPattern</key><string></string><key>customOrder</key><integer>-2147483648</integer><key>enabled</key><true/><key>header</key><string></string><key>lastUpdateTime</key><integer>0</integer><key>loginUrl</key><string></string><key>ruleBookInfo</key><dict><key>author</key><string>author</string><key>canReName</key><string></string><key>coverUrl</key><string>cover</string><key>init</key><string>@js://@js://详情
+function decrypt(data) {
+    try {
+        let mark = decodeURI('%7B%7B%7B%7D%7D%7D');
+        if (data &amp;&amp; data.indexOf(mark) &gt; -1) {
+            let part = data.split(mark)[1];
+            let decrypted = com.blankj.utilcode.util.ConvertUtils.bytes2String(
+                com.blankj.utilcode.util.EncryptUtils.decryptBase64AES(
+                    com.blankj.utilcode.util.ConvertUtils.string2Bytes(part),
+                    com.blankj.utilcode.util.ConvertUtils.string2Bytes('OW84U8Eerdb99rtsTXWSILDO'),
+                    'desede/CBC/PKCS5Padding',
+                    com.blankj.utilcode.util.ConvertUtils.string2Bytes('SK8bncVu')
+                )
+            );
+            if (decrypted) {
+                return decrypted;
+            }
+        }
+    } catch (e) {
+    }
+    return data;
+}
+let json = JSON.parse(result);
+let data = json.data;
+let info = {
+    title: decrypt(data.Name),
+    cover: decrypt(data.Img),
+    desc: decrypt(data.Desc),
+    author: decrypt(data.Author),
+    category: decrypt(data.CName),
+    status: decrypt(data.BookStatus),
+    update: decrypt(data.LastChapter),
+    updateTime: decrypt(data.LastTime),
+    tocUrl : baseUrl.replace('info.html', 'index.html')
+};
+info;</string><key>intro</key><string>desc</string><key>kind</key><string>category</string><key>lastChapter</key><string>update</string><key>name</key><string>title</string><key>tocUrl</key><string>tocUrl</string><key>updateTime</key><string>updateTime</string><key>wordCount</key><string></string></dict><key>ruleContent</key><dict><key>content</key><string>@js://图片
+function decrypt(data) {
+    try {
+        let mark = decodeURI('%7B%7B%7B%7D%7D%7D');
+        if (data &amp;&amp; data.indexOf(mark) &gt; -1) {
+            let part = data.split(mark)[1];
+            let decrypted = com.blankj.utilcode.util.ConvertUtils.bytes2String(
+                com.blankj.utilcode.util.EncryptUtils.decryptBase64AES(
+                    com.blankj.utilcode.util.ConvertUtils.string2Bytes(part),
+                    com.blankj.utilcode.util.ConvertUtils.string2Bytes('OW84U8Eerdb99rtsTXWSILDO'),
+                    'desede/CBC/PKCS5Padding',
+                    com.blankj.utilcode.util.ConvertUtils.string2Bytes('SK8bncVu')
+                )
+            );
+            if (decrypted) {
+                return decrypted;
+            }
+        }
+    } catch (e) {
+    }
+    return data;
+}
+let json = JSON.parse(result);
+JSON.parse(decrypt(json.data.content)).map(item =&gt; '&lt;img src="' + item + '"&gt;').join('\n');</string><key>imageDecode</key><string>//图片解密
+com.blankj.utilcode.util.EncryptUtils.decryptAES(
+    result,
+    com.blankj.utilcode.util.ConvertUtils.string2Bytes('OW84U8Eerdb99rtsTXWSILDO'),
+    'desede/CBC/PKCS5Padding',
+    com.blankj.utilcode.util.ConvertUtils.string2Bytes('SK8bncVu')
+);</string><key>imageStyle</key><string></string><key>nextContentUrl</key><string></string><key>replaceRegex</key><string></string><key>sourceRegex</key><string></string><key>webJs</key><string></string></dict><key>ruleSearch</key><dict><key>author</key><string>author</string><key>bookList</key><string>@js://搜索结果列表
+function decrypt(data) {
+    let mark = decodeURI('%7B%7B%7B%7D%7D%7D');
+    if (data &amp;&amp; data.indexOf(mark) &gt; -1) {
+        let part = data.split(mark)[1];
+        let decrypted = com.blankj.utilcode.util.ConvertUtils.bytes2String(
+            com.blankj.utilcode.util.EncryptUtils.decryptBase64AES(
+                com.blankj.utilcode.util.ConvertUtils.string2Bytes(part),
+                com.blankj.utilcode.util.ConvertUtils.string2Bytes('OW84U8Eerdb99rtsTXWSILDO'),
+                'desede/CBC/PKCS5Padding',
+                com.blankj.utilcode.util.ConvertUtils.string2Bytes('SK8bncVu')
+            )
+        );
+        if (decrypted) {
+            return decrypted;
+        }
+    }
+    return data;
+}
+let json = JSON.parse(result);
+function getResult() {
+    return json.data.map(function (item) {
+        let page = parseInt(parseInt(item.Id) / 1000) + 1;
+        return {
+            cover: decrypt(item.Img),
+            url: 'https://infosmanhua.pysmei.com/BookFiles/Html/' + page + '/' + item.Id + '/info.html',
+            title: decrypt(item.Name),
+            author: decrypt(item.Author),
+            category: decrypt(item.CName),
+            update: decrypt(item.LastChapter),
+            updateTime: decrypt(item.UpdateTime),
+            desc: decrypt(item.Desc)
+        }
+    })
+}
+getResult();</string><key>bookUrl</key><string>url</string><key>coverUrl</key><string>cover</string><key>intro</key><string>desc</string><key>kind</key><string>category</string><key>lastChapter</key><string>update</string><key>name</key><string>title</string><key>updateTime</key><string>updateTime</string><key>wordCount</key><string></string></dict><key>ruleToc</key><dict><key>chapterList</key><string>@js://目录
+function decrypt(data) {
+    try {
+        let mark = decodeURI('%7B%7B%7B%7D%7D%7D');
+        if (data &amp;&amp; data.indexOf(mark) &gt; -1) {
+            let part = data.split(mark)[1];
+            let decrypted = com.blankj.utilcode.util.ConvertUtils.bytes2String(
+                com.blankj.utilcode.util.EncryptUtils.decryptBase64AES(
+                    com.blankj.utilcode.util.ConvertUtils.string2Bytes(part),
+                    com.blankj.utilcode.util.ConvertUtils.string2Bytes('OW84U8Eerdb99rtsTXWSILDO'),
+                    'desede/CBC/PKCS5Padding',
+                    com.blankj.utilcode.util.ConvertUtils.string2Bytes('SK8bncVu')
+                )
+            );
+            if (decrypted) {
+                return decrypted;
+            }
+        }
+    } catch (e) {
+    }
+    return data;
+}
+let json = JSON.parse(result);
+let chapters = [];
+json.data.list.forEach(group =&gt; {
+    group.list.forEach(chapter =&gt; {
+        if (chapter.hasContent == 1) {
+            chapters.push(
+                {
+                    title: decrypt(chapter.name),
+                    url: baseUrl.replace('infosmanhua', 'contentmanhua').replace('index.html', chapter.id + '.html')
+                }
+            );
+        }
+    });
+});
+chapters;</string><key>chapterName</key><string>title</string><key>chapterUrl</key><string>url</string><key>isVip</key><string></string><key>nextTocUrl</key><string></string><key>updateTime</key><string></string></dict><key>searchUrl</key><string>https://soumh.leeyegy.com/search.aspx?key={{key}}&amp;page={{page}}&amp;siteid=manhuaapp2</string><key>sort</key><integer>1</integer><key>star</key><integer>5</integer><key>weight</key><integer>0</integer></dict><key>status</key><integer>1</integer><key>star</key><integer>5</integer><key>add_time</key><string>2023-06-01 16:16:10</string><key>is_ceshi</key><integer>2</integer><key>is_app</key><integer>1</integer></dict><dict><key>id</key><integer>68</integer><key>site_name</key><string>知音漫客</string><key>domain</key><string>m.zymk.cn</string><key>sort</key><integer>6</integer><key>parse_rule</key><dict><key>bookSourceComment</key><string></string><key>bookSourceName</key><string>知音漫客</string><key>bookSourceType</key><integer>2</integer><key>bookSourceUrl</key><string>https://m.zymk.cn/</string><key>customOrder</key><integer>-2147483647</integer><key>enabled</key><true/><key>lastUpdateTime</key><integer>1617687567429</integer><key>ruleBookInfo</key><dict><key>author</key><string>class.author@text</string><key>intro</key><string>class.content@text</string><key>kind</key><string>class.tags@a@text</string><key>name</key><string>h1.name@text</string></dict><key>ruleContent</key><dict><key>content</key><string>@js:
+host='http://mhpic.zymkcdn.com/comic/';
+original=result.match(/dr_original:"([^"]+)"/)[1];
+end=result.match(/end_var:(\d+)/)[1];
+//画质
+high='.jpg-zymk.high.webp';
+low='.jpg-zymk.low.webp';
+middle='.jpg-zymk.middle.webp';
+
+html='';
+for(i=1;i&lt;=end;i++){
+html+='&lt;img src="'+host+original+i+high+'"&gt;\n'
+}
+html</string><key>imageStyle</key><string>FULL</string></dict><key>ruleSearch</key><dict><key>author</key><string></string><key>bookList</key><string>class.item@h3</string><key>bookUrl</key><string>tag.a.0@href</string><key>coverUrl</key><string>img@data-src</string><key>kind</key><string>class.score@text</string><key>lastChapter</key><string>class.chapter@text</string><key>name</key><string>class.title@a@text</string></dict><key>ruleToc</key><dict><key>chapterList</key><string>-class.chapterlist@li@a</string><key>chapterName</key><string>text</string><key>chapterUrl</key><string>href</string></dict><key>searchUrl</key><string>https://m.zymk.cn/sort/all.html?key={{key}}</string><key>weight</key><integer>0</integer></dict><key>status</key><integer>1</integer><key>star</key><integer>4</integer><key>add_time</key><string>2023-06-01 16:16:10</string><key>is_ceshi</key><integer>2</integer><key>is_app</key><integer>2</integer></dict><dict><key>id</key><integer>69</integer><key>site_name</key><string>搜动漫</string><key>domain</key><string>m.soudongman.com</string><key>sort</key><integer>7</integer><key>parse_rule</key><dict><key>bookSourceComment</key><string></string><key>bookSourceGroup</key><string></string><key>bookSourceName</key><string>搜动漫</string><key>bookSourceType</key><integer>2</integer><key>bookSourceUrl</key><string>http://m.soudongman.com</string><key>bookUrlPattern</key><string></string><key>customOrder</key><integer>-2147483646</integer><key>enabled</key><true/><key>header</key><string></string><key>lastUpdateTime</key><integer>1623324790628</integer><key>loginUrl</key><string></string><key>ruleBookInfo</key><dict><key>author</key><string>class.sub_r@tag.p.0@text</string><key>coverUrl</key><string>id.Cover@tag.img@src</string><key>intro</key><string>class.txtDesc@text##介绍:</string><key>kind</key><string>class.sub_r@tag.p.1@tag.a@text</string><key>lastChapter</key><string>id.chapter-list-1@tag.li.-2@tag.a@tag.span@text</string><key>name</key><string>id.comicName@text</string><key>wordCount</key><string>class.date@text</string></dict><key>ruleContent</key><dict><key>content</key><string>@js:var json = result.match(/window.comicInfo=(.*?),window.hideguide/)[1];
+var json = eval('json='+json)
+var image_list = [];
+json.current_chapter.chapter_img_list.map(item=&gt;{
+    image_list.push('&lt;img src="'+item+'"&gt;')
+})
+image_list.join("\n");</string><key>imageStyle</key><string></string><key>nextContentUrl</key><string></string></dict><key>ruleSearch</key><dict><key>author</key><string>tag.p.0@text||tag.span@text##作者:</string><key>bookList</key><string>class.comic-item</string><key>bookUrl</key><string>tag.a@href</string><key>coverUrl</key><string>tag.img@data-src</string><key>kind</key><string></string><key>lastChapter</key><string>class.chapter@text</string><key>name</key><string>class.title@text</string></dict><key>ruleToc</key><dict><key>chapterList</key><string>-ul.chapterlist@li</string><key>chapterName</key><string>tag.a@text</string><key>chapterUrl</key><string>tag.a@href</string></dict><key>searchUrl</key><string>http://m.soudongman.com/sort/all.html?key={{key}}</string><key>weight</key><integer>0</integer></dict><key>status</key><integer>1</integer><key>star</key><integer>4</integer><key>add_time</key><string>2023-06-01 16:16:10</string><key>is_ceshi</key><integer>2</integer><key>is_app</key><integer>2</integer></dict><dict><key>id</key><integer>70</integer><key>site_name</key><string>动漫之家</string><key>domain</key><string>m.dmzj.com</string><key>sort</key><integer>6</integer><key>parse_rule</key><dict><key>bookSourceComment</key><string></string><key>bookSourceGroup</key><string></string><key>bookSourceName</key><string>动漫之家</string><key>bookSourceType</key><integer>2</integer><key>bookSourceUrl</key><string>https://m.dmzj.com</string><key>bookUrlPattern</key><string></string><key>customOrder</key><integer>-2147483645</integer><key>enabled</key><true/><key>lastUpdateTime</key><integer>1611113391950</integer><key>loginUrl</key><string></string><key>ruleBookInfo</key><dict><key>author</key><string>class.txtItme.0@tag.a@text</string><key>canReName</key><string>//##obj_id = \"(.*)\";##https://v3api.dmzj.com/comic/$1.json?channel=Android&amp;version=2.7.019###</string><key>coverUrl</key><string>id.Cover@tag.img@src@js:header={"Referer":baseUrl}
+headers={"headers":JSON.stringify(header)}
+result=result+','+JSON.stringify(headers)</string><key>intro</key><string>class.txtDesc@text</string><key>kind</key><string>class.txtItme.1@tag.a@text&amp;&amp;class.txtItme.2@tag.a.-1@text</string><key>name</key><string>id.comicName@text</string><key>tocUrl</key><string></string></dict><key>ruleContent</key><dict><key>content</key><string>$.page_url[*]
+@js:
+list=result.split("\n");
+header={"Referer":baseUrl};
+headers={"headers":JSON.stringify(header)}
+html='';
+for(i in list){
+html+='&lt;img src="'+list[i]+','+JSON.stringify(headers)+'"&gt;'
+}
+html</string><key>imageStyle</key><string>FULL</string><key>sourceRegex</key><string></string><key>webJs</key><string></string></dict><key>ruleSearch</key><dict><key>author</key><string>$.authors</string><key>bookList</key><string>&lt;js&gt;
+var data;
+data = result.match(/\[.*\]/)[0];
+&lt;/js&gt;$.*</string><key>bookUrl</key><string>https://m.dmzj.com/info/{{$.id}}.html</string><key>coverUrl</key><string>$.cover&lt;js&gt;result.indexOf("http")&gt;-1?result:("https://images.dmzj.com/"+result)&lt;/js&gt;@js:header={"Referer":baseUrl}
+headers={"headers":JSON.stringify(header)}
+result=result+','+JSON.stringify(headers)</string><key>intro</key><string>$.description</string><key>kind</key><string>$.types</string><key>lastChapter</key><string>$.last_update_chapter_name</string><key>name</key><string>$.name</string><key>wordCount</key><string></string></dict><key>ruleToc</key><dict><key>chapterList</key><string>-&lt;js&gt;
+var data = result.match(/"data":(\[.*?\])/)[1];
+data
+&lt;/js&gt;$.[*]</string><key>chapterName</key><string>$.chapter_name</string><key>chapterUrl</key><string>https://v3api.dmzj.com/chapter/{{$.comic_id}}/{{$.id}}.json?channel=Android&amp;version=2.7.019</string></dict><key>searchUrl</key><string>https://m.dmzj.com/search/{{key}}.html</string><key>weight</key><integer>0</integer></dict><key>status</key><integer>1</integer><key>star</key><integer>4</integer><key>add_time</key><string>2023-06-01 16:16:10</string><key>is_ceshi</key><integer>2</integer><key>is_app</key><integer>2</integer></dict><dict><key>id</key><integer>71</integer><key>site_name</key><string>爱米推漫画2</string><key>domain</key><string>m.imitui.com</string><key>sort</key><integer>9</integer><key>parse_rule</key><dict><key>bookSourceComment</key><string></string><key>bookSourceGroup</key><string></string><key>bookSourceName</key><string>爱米推漫画2</string><key>bookSourceType</key><integer>2</integer><key>bookSourceUrl</key><string>https://m.imitui.com</string><key>bookUrlPattern</key><string></string><key>customOrder</key><integer>-2147483644</integer><key>enabled</key><true/><key>header</key><string></string><key>lastUpdateTime</key><integer>1623324790628</integer><key>loginUrl</key><string></string><key>ruleBookInfo</key><dict><key>author</key><string>class.sub_r@tag.p.0@text</string><key>coverUrl</key><string>id.Cover@tag.img@src</string><key>intro</key><string>class.txtDesc@text##介绍:</string><key>kind</key><string>class.sub_r@tag.p.1@tag.a@text</string><key>lastChapter</key><string>id.chapter-list-1@tag.li.-2@tag.a@tag.span@text</string><key>name</key><string>id.comicName@text</string><key>wordCount</key><string>class.date@text</string></dict><key>ruleContent</key><dict><key>content</key><string>@js:
+header={"Referer":baseUrl};
+headers={"headers":JSON.stringify(header)};
+images = [];
+firstImage = result.match(/id="image" src="(.*?)"/);
+if (firstImage &amp;&amp; firstImage.length &gt; 1) {
+    images.push(firstImage[1]);
+}
+successImages = result.match(/class="scroll-item"[\S\s]*?data-state="success"[\S\s]*?src="[\S\s]*?"/g);
+if (successImages) {
+    successImages.forEach(successImage =&gt; {
+        images.push(successImage.match(/src="([\S\s]*?)"/)[1]);
+    });
+}
+pendingImages = result.match(/class="scroll-item"[\S\s]*?data-state="pending"[\S\s]*?data-src="[\S\s]*?"/g);
+if (pendingImages) {
+    pendingImages.forEach(pendingImage =&gt; {
+        images.push(pendingImage.match(/data-src="([\S\s]*?)"/)[1]);
+    });
+}
+var image_list=[];
+images.map(item=&gt;{
+    image_list.push('&lt;img src="'+item+','+JSON.stringify(headers)+'"&gt;')
+})
+image_list.join("\n");</string><key>imageStyle</key><string></string><key>nextContentUrl</key><string></string></dict><key>ruleSearch</key><dict><key>author</key><string>tag.p.0@text</string><key>bookList</key><string>class.UpdateList@class.itemBox</string><key>bookUrl</key><string>tag.a.0@href</string><key>coverUrl</key><string>tag.img@src</string><key>kind</key><string></string><key>lastChapter</key><string>a.coll@text</string><key>name</key><string>class.title@text</string></dict><key>ruleToc</key><dict><key>chapterList</key><string>ul#chapter-list-1@li</string><key>chapterName</key><string>tag.a@text</string><key>chapterUrl</key><string>tag.a@href</string><key>isVip</key><string>tag.a@text@js:result.indexOf(decodeURIComponent('%F0%9F%94%92'))!=-1</string></dict><key>searchUrl</key><string>https://m.imitui.com/search/?keywords={{key}}</string><key>weight</key><integer>0</integer></dict><key>status</key><integer>1</integer><key>star</key><integer>2</integer><key>add_time</key><string>2023-06-01 16:16:10</string><key>is_ceshi</key><integer>2</integer><key>is_app</key><integer>2</integer></dict><dict><key>id</key><integer>72</integer><key>site_name</key><string>腾讯漫画</string><key>domain</key><string>m.ac.qq.com</string><key>sort</key><integer>6</integer><key>parse_rule</key><dict><key>bookSourceGroup</key><string></string><key>bookSourceName</key><string>腾讯漫画</string><key>bookSourceType</key><integer>2</integer><key>bookSourceUrl</key><string>https://m.ac.qq.com</string><key>bookUrlPattern</key><string></string><key>customOrder</key><integer>-2147483643</integer><key>enabled</key><true/><key>lastUpdateTime</key><integer>0</integer><key>loginUrl</key><string></string><key>ruleBookInfo</key><dict><key>author</key><string>class.head-info-author@text##作者：</string><key>intro</key><string>class.head-info-desc@text</string><key>lastChapter</key><string>class.mod-chapter-title@tag.span.0@text##，</string><key>name</key><string>class.head-title-tags@h1@text</string></dict><key>ruleContent</key><dict><key>content</key><string>@js:
+data=result.match(/data:\s*'(.*?)'/)[1];
+nonce=result.match(/&lt;script&gt;window.*?=(.*?)&lt;\/script&gt;/)[1];
+nonce=eval(nonce);
+var N = String(nonce).match(/\d+\w+/);
+jlen=N.length;
+while(jlen){
+jlen -= 1;
+jlocate = parseInt(N[jlen].match(/(\d+)/)[0]) &amp;255;
+jstr = N[jlen].replace(/\d+/g,'');
+data=data.substring(0,parseInt(jlocate))+data.substring(parseInt(jlocate)+jstr.length,data.length)}
+piclist=eval(java.base64Decode(data).match(/"picture":(\[{".*\])/)[1]);
+html='';
+for(i in piclist){
+html += '&lt;img src="'+piclist[i].url+'"&gt;\n'
+}
+html</string><key>imageStyle</key><string>FULL</string><key>nextContentUrl</key><string></string></dict><key>ruleSearch</key><dict><key>bookList</key><string>id.lst_searchResult@tag.li||id.list_update@tag.li||class.comic-link</string><key>bookUrl</key><string>class.comic-link@href</string><key>coverUrl</key><string>class.comic-cover@tag.img@src</string><key>kind</key><string>class.comic-tag@text</string><key>lastChapter</key><string>class.chapter@text||class.comic-update@text##更新</string><key>name</key><string>class.comic-title@text</string></dict><key>ruleToc</key><dict><key>chapterList</key><string>@css:.chapter-wrap-list.normal&gt;li</string><key>chapterName</key><string>tag.a@class&amp;&amp;tag.a@text@js:result.replace(/chapter-link/g,'').replace(/\s/g,'').replace(/lock/g,'')</string><key>chapterUrl</key><string>tag.a@href</string><key>isVip</key><string>@js:result.select('span').hasClass('in-app')</string></dict><key>searchUrl</key><string>https://m.ac.qq.com/search/result?word={{key}}</string><key>weight</key><integer>0</integer></dict><key>status</key><integer>1</integer><key>star</key><integer>4</integer><key>add_time</key><string>2023-06-01 16:16:10</string><key>is_ceshi</key><integer>2</integer><key>is_app</key><integer>2</integer></dict><dict><key>id</key><integer>73</integer><key>site_name</key><string>追漫画</string><key>domain</key><string>zsds.app</string><key>sort</key><integer>1</integer><key>parse_rule</key><dict><key>bookSourceComment</key><string></string><key>bookSourceGroup</key><string></string><key>bookSourceName</key><string>追漫画</string><key>bookSourceType</key><integer>2</integer><key>bookSourceUrl</key><string>zsds.app</string><key>bookUrlPattern</key><string></string><key>customOrder</key><integer>-2147483642</integer><key>enabled</key><true/><key>header</key><string></string><key>lastUpdateTime</key><integer>0</integer><key>loginUrl</key><string></string><key>ruleBookInfo</key><dict><key>author</key><string>author</string><key>canReName</key><string></string><key>coverUrl</key><string>cover</string><key>init</key><string>@js://详情
+function tocUrl(path) {
+    let url = 'https://c-catalog.mysignal.cn/' + path;
+    return url + '@' + 'js:' + "//目录URL\nfunction md5(data) {\n    try {\n        let md5 = com.westcoast.cartoon.util.MD5Utils.getMD5String(data);\n        if (md5) {\n            return new String(md5);\n        }\n    } catch (error) {\n    }\n}\ntime = Number.parseInt(Date.now() / 1000);\nua = [com.westcoast.base.util.c.a(), '_', 'com.zhuishudashi.read'];\nsign = ['com.zhuishudashi.read1', time, 'vhjJVz1St6tK7!8n#B0MqRIuE2Dh7!C#'];\nheaders = {\n    'User-Agent': ua.join(''),\n    'package': 'com.zhuishudashi.read',\n    'pt': '1',\n    'version': '1.2.1',\n    'channel': 'dub_al00',\n    'time': time,\n    'sign': md5(sign.join(''))\n};\noption = { 'headers': headers };\nString(result + ',' + JSON.stringify(option));";
+}
+let detailContent = JSON.parse(com.westcoast.base.util.b.decode(JSON.parse(result).data.content));
+let info = {
+    title: detailContent.name,
+    cover: 'https://c-res.mysignal.cn/' + detailContent.image,
+    desc: detailContent.remark,
+    author: detailContent.author,
+    category: detailContent.tags ? detailContent.tags.map(tag =&gt; tag.tags_name).join(',') : null,
+    status: detailContent.status == 1 ? '完结' : '连载',
+    update: detailContent.last_chapter_name,
+    updateTime: detailContent.updated_at,
+    tocUrl: tocUrl(detailContent.list_path)
+};
+info;</string><key>intro</key><string>desc</string><key>kind</key><string>category</string><key>lastChapter</key><string>update</string><key>name</key><string>title</string><key>tocUrl</key><string>tocUrl</string><key>updateTime</key><string>updateTime</string><key>wordCount</key><string></string></dict><key>ruleContent</key><dict><key>content</key><string>@js:// 图片
+content = JSON.parse(com.westcoast.base.util.b.decode(JSON.parse(result).data.content));
+content.map(item =&gt; '&lt;img src="https://c-chapter.mysignal.cn/' + item.path + "@extra=" + JSON.stringify(item) + '"&gt;').join('\n');</string><key>imageStyle</key><string></string><key>nextContentUrl</key><string></string><key>replaceRegex</key><string></string><key>sourceRegex</key><string></string><key>webJs</key><string></string></dict><key>ruleSearch</key><dict><key>author</key><string>author</string><key>bookList</key><string>@js://搜索结果列表
+function bookUrl(id) {
+    let url = 'https://book.mysignal.cn/comics/details/v4/' + Math.floor(id / 1000) + '/' + id + '.html';
+    return url + '@' + 'js:' + "//详情URL\nfunction md5(data) {\n    try {\n        let md5 = com.westcoast.cartoon.util.MD5Utils.getMD5String(data);\n        if (md5) {\n            return new String(md5);\n        }\n    } catch (error) {\n    }\n}\ntime = Number.parseInt(Date.now() / 1000);\nua = [com.westcoast.base.util.c.a(), '_', 'com.zhuishudashi.read'];\nsign = ['com.zhuishudashi.read1', time, 'vhjJVz1St6tK7!8n#B0MqRIuE2Dh7!C#'];\nheaders = {\n    'User-Agent': ua.join(''),\n    'package': 'com.zhuishudashi.read',\n    'pt': '1',\n    'version': '1.2.1',\n    'channel': 'dub_al00',\n    'time': time,\n    'sign': md5(sign.join(''))\n};\noption = { 'headers': headers };\nString(result + ',' + JSON.stringify(option));";
+}
+let content = JSON.parse(com.westcoast.base.util.b.decode(JSON.parse(result).data.content));
+let items = [];
+content.book.forEach(item =&gt; {
+    try {
+        items.push(
+            {
+                cover: 'https://c-res.mysignal.cn/' + item.image,
+                url: bookUrl(item.book_id),
+                title: item.name,
+                author: item.author,
+                category: null,
+                update: null,
+                updateTime: null,
+                desc: item.remark
+            }
+        );
+    } catch (error) {
+    }
+});
+items;</string><key>bookUrl</key><string>url</string><key>coverUrl</key><string>cover</string><key>intro</key><string>desc</string><key>kind</key><string>category</string><key>lastChapter</key><string>update</string><key>name</key><string>title</string><key>updateTime</key><string>updateTime</string><key>wordCount</key><string></string></dict><key>ruleToc</key><dict><key>chapterList</key><string>@js://目录
+function chapterUrl(chapter) {
+    let url = 'https://c-pic.mysignal.cn/' + chapter.path + '?time=' + chapter.updated_at;
+    return url + '@' + 'js:' + "//章节URL\nfunction md5(data) {\n    try {\n        let md5 = com.westcoast.cartoon.util.MD5Utils.getMD5String(data);\n        if (md5) {\n            return new String(md5);\n        }\n    } catch (error) {\n    }\n}\ntime = Number.parseInt(Date.now() / 1000);\nua = [com.westcoast.base.util.c.a(), '_', 'com.zhuishudashi.read'];\nsign = ['com.zhuishudashi.read1', time, 'vhjJVz1St6tK7!8n#B0MqRIuE2Dh7!C#'];\nheaders = {\n    'User-Agent': ua.join(''),\n    'package': 'com.zhuishudashi.read',\n    'pt': '1',\n    'version': '1.2.1',\n    'channel': 'dub_al00',\n    'time': time,\n    'sign': md5(sign.join(''))\n};\noption = { 'headers': headers };\nString(result + ',' + JSON.stringify(option));";
+}
+let chapters = [];
+let catalogContent = JSON.parse(com.westcoast.base.util.b.decode(JSON.parse(result).data.content));
+catalogContent.forEach(chapter =&gt; {
+    chapters.push(
+        {
+            title: chapter.name,
+            url: chapterUrl(chapter)
+        }
+    );
+});
+chapters;</string><key>chapterName</key><string>title</string><key>chapterUrl</key><string>url</string><key>isVip</key><string></string><key>nextTocUrl</key><string></string><key>updateTime</key><string></string></dict><key>searchUrl</key><string>@js://搜索URL
+function md5(data) {
+    try {
+        let md5 = com.westcoast.cartoon.util.MD5Utils.getMD5String(data);
+        if (md5) {
+            return new String(md5);
+        }
+    } catch (error) {
+    }
+}
+time = Number.parseInt(Date.now() / 1000);
+ua = [com.westcoast.base.util.c.a(), '_', 'com.zhuishudashi.read'];
+sign = ['com.zhuishudashi.read1', time, 'vhjJVz1St6tK7!8n#B0MqRIuE2Dh7!C#'];
+headers = {
+    'User-Agent': ua.join(''),
+    'package': 'com.zhuishudashi.read',
+    'pt': '1',
+    'version': '1.2.1',
+    'channel': 'dub_al00',
+    'time': time,
+    'sign': md5(sign.join(''))
+};
+option = { "headers": headers };
+String('https://s.mysignal.cn/v4/1/lists.api?keyword=' + key + '&amp;form=3,' + JSON.stringify(option));</string><key>sort</key><integer>1</integer><key>star</key><integer>5</integer><key>weight</key><integer>0</integer></dict><key>status</key><integer>1</integer><key>star</key><integer>5</integer><key>add_time</key><string>2023-06-26 16:43:56</string><key>is_ceshi</key><integer>2</integer><key>is_app</key><integer>1</integer></dict><dict><key>id</key><integer>74</integer><key>site_name</key><string>亲漫画</string><key>domain</key><string>qqdm.app</string><key>sort</key><integer>6</integer><key>parse_rule</key><dict><key>bookSourceComment</key><string></string><key>bookSourceGroup</key><string></string><key>bookSourceName</key><string>亲漫画</string><key>bookSourceType</key><integer>2</integer><key>bookSourceUrl</key><string>qqdm.app</string><key>bookUrlPattern</key><string></string><key>customOrder</key><integer>-2147483641</integer><key>enabled</key><true/><key>header</key><string></string><key>lastUpdateTime</key><integer>0</integer><key>loginUrl</key><string></string><key>ruleBookInfo</key><dict><key>author</key><string>author</string><key>canReName</key><string></string><key>coverUrl</key><string>cover</string><key>init</key><string>@js://详情
+function decrypt(data) {
+    try {
+        let dataBytes = com.blankj.utilcode.util.EncodeUtils.base64Decode(data);
+        let keyBytes = com.blankj.utilcode.util.ConvertUtils.string2Bytes('Z6aESpmGB62yNYsh', 'ASCII');
+        let ivBytes = com.blankj.utilcode.util.ConvertUtils.string2Bytes('JNWmRJjiDJ7wHtTh', 'UTF-8');
+        let decryptBytes = com.blankj.utilcode.util.EncryptUtils.decryptAES(dataBytes, keyBytes, 'AES/CBC/PKCS5Padding', ivBytes);
+        let decrypt = com.blankj.utilcode.util.ConvertUtils.bytes2String(decryptBytes, 'UTF-8');
+        return decrypt;
+    } catch (error) {
+    }
+    return data;
+}
+function fixNumber(number) {
+    try {
+        if (number &lt; 10) {
+            return '0' + number;
+        }
+        return number;
+    } catch (error) {
+    }
+    return '00';
+}
+function formatTime(time) {
+    try {
+        let date = new Date(time * 1000);
+        return [date.getFullYear(), '-', fixNumber(date.getMonth() + 1), '-', fixNumber(date.getDate()), ' ', fixNumber(date.getHours()), ':', fixNumber(date.getMinutes()), ':', fixNumber(date.getSeconds())].join('');
+    } catch (error) {
+    }
+    return '';
+}
+let json = JSON.parse(decrypt(result));
+let data = json.data;
+let info = {
+    title: data.title,
+    cover: data.cover,
+    desc: data.description,
+    author: data.author,
+    category: data.subjects ? data.subjects.map(tag =&gt; tag.name).join(',') : null,
+    status: data.status == 1 ? '完结' : '连载',
+    update: data.last_chapter_name,
+    updateTime: formatTime(data.posted_at)
+};
+info;</string><key>intro</key><string>desc</string><key>kind</key><string>category</string><key>lastChapter</key><string>update</string><key>name</key><string>title</string><key>tocUrl</key><string></string><key>updateTime</key><string>updateTime</string><key>wordCount</key><string></string></dict><key>ruleContent</key><dict><key>content</key><string>@js://图片
+function decrypt(data) {
+    try {
+        let dataBytes = com.blankj.utilcode.util.EncodeUtils.base64Decode(data);
+        let keyBytes = com.blankj.utilcode.util.ConvertUtils.string2Bytes('Z6aESpmGB62yNYsh', 'ASCII');
+        let ivBytes = com.blankj.utilcode.util.ConvertUtils.string2Bytes('JNWmRJjiDJ7wHtTh', 'UTF-8');
+        let decryptBytes = com.blankj.utilcode.util.EncryptUtils.decryptAES(dataBytes, keyBytes, 'AES/CBC/PKCS5Padding', ivBytes);
+        let decrypt = com.blankj.utilcode.util.ConvertUtils.bytes2String(decryptBytes, 'UTF-8');
+        return decrypt;
+    } catch (error) {
+    }
+    return data;
+}
+let json = JSON.parse(decrypt(result));
+json.data.imageArray.map(item =&gt; '&lt;img src="http://aii1lyii.6gawax.fit/' + json.data.path + item + '"&gt;').join('\n');</string><key>imageStyle</key><string></string><key>nextContentUrl</key><string></string><key>replaceRegex</key><string></string><key>sourceRegex</key><string></string><key>webJs</key><string></string></dict><key>ruleSearch</key><dict><key>author</key><string>author</string><key>bookList</key><string>@js://搜索结果列表
+function bookUrl(id) {
+    let url = 'http://6954acc.games.mhd100.com/app2/comic/view?id=' + id + '&amp;all=1';
+    return url + '@' + 'js:' + "//详情URL\nlet url = result;\nlet time = [Math.floor(Date.now() / 1000)].join('');\nlet str1 = ['8f23ff99a82668c274e4f67c97714a00', url.substring(31), time, 'DBFKn3THj8dhFNxM'].join('');\nlet md51 = [com.blankj.utilcode.util.EncryptUtils.encryptMD5ToString(str1).toLowerCase()].join('');\nlet str2 = ['c3L7GR7W7jcmdZNjcom.shenl.qinqinmh2', md51].join('');\nlet sign = [com.blankj.utilcode.util.EncryptUtils.encryptMD5ToString(str2).toLowerCase()].join('');\nlet headers = {\n    'User-Agent': 'QQMH Android Client/1.0 (qinqinmanhua@gmail.com)',\n    'Referer': 'http://2106s.api.mhd100.com/',\n    'x-version': '2628',\n    'x-time': time,\n    'x-sign': sign\n};\nlet option = { \"headers\": headers };\nString(url + ',' + JSON.stringify(option));";
+}
+function decrypt(data) {
+    try {
+        let dataBytes = com.blankj.utilcode.util.EncodeUtils.base64Decode(data);
+        let keyBytes = com.blankj.utilcode.util.ConvertUtils.string2Bytes('Z6aESpmGB62yNYsh', 'ASCII');
+        let ivBytes = com.blankj.utilcode.util.ConvertUtils.string2Bytes('JNWmRJjiDJ7wHtTh', 'UTF-8');
+        let decryptBytes = com.blankj.utilcode.util.EncryptUtils.decryptAES(dataBytes, keyBytes, 'AES/CBC/PKCS5Padding', ivBytes);
+        let decrypt = com.blankj.utilcode.util.ConvertUtils.bytes2String(decryptBytes, 'UTF-8');
+        return decrypt;
+    } catch (error) {
+    }
+    return data;
+}
+function fixNumber(number) {
+    try {
+        if (number &lt; 10) {
+            return '0' + number;
+        }
+        return number;
+    } catch (error) {
+    }
+    return '00';
+}
+function formatTime(time) {
+    try {
+        let date = new Date(time * 1000);
+        return [date.getFullYear(), '-', fixNumber(date.getMonth() + 1), '-', fixNumber(date.getDate()), ' ', fixNumber(date.getHours()), ':', fixNumber(date.getMinutes()), ':', fixNumber(date.getSeconds())].join('');
+    } catch (error) {
+    }
+    return '';
+}
+json = JSON.parse(decrypt(result));
+items = [];
+json.items.forEach(item =&gt; {
+    try {
+        items.push(
+            {
+                cover: item.cover,
+                url: bookUrl(item.id),
+                title: item.title,
+                author: item.author,
+                category: null,
+                update: item.last_chapter_name,
+                updateTime: formatTime(item.posted_at),
+                desc: item.description
+            }
+        );
+    } catch (error) {
+    }
+});
+items;</string><key>bookUrl</key><string>url</string><key>coverUrl</key><string>cover</string><key>intro</key><string>desc</string><key>kind</key><string>category</string><key>lastChapter</key><string>update</string><key>name</key><string>title</string><key>updateTime</key><string>updateTime</string><key>wordCount</key><string></string></dict><key>ruleToc</key><dict><key>chapterList</key><string>@js://目录
+function chapterUrl(id) {
+    let url = 'http://6954acc.games.mhd100.com/app2/chapter/view?id=' + id;
+    return url + '@' + 'js:' + "//章节URL\nlet url = result;\nlet time = [Math.floor(Date.now() / 1000)].join('');\nlet str1 = ['8f23ff99a82668c274e4f67c97714a00', url.substring(31), time, 'DBFKn3THj8dhFNxM'].join('');\nlet md51 = [com.blankj.utilcode.util.EncryptUtils.encryptMD5ToString(str1).toLowerCase()].join('');\nlet str2 = ['c3L7GR7W7jcmdZNjcom.shenl.qinqinmh2', md51].join('');\nlet sign = [com.blankj.utilcode.util.EncryptUtils.encryptMD5ToString(str2).toLowerCase()].join('');\nlet headers = {\n    'User-Agent': 'QQMH Android Client/1.0 (qinqinmanhua@gmail.com)',\n    'Referer': 'http://2106s.api.mhd100.com/',\n    'x-version': '2628',\n    'x-time': time,\n    'x-sign': sign\n};\nlet option = { \"headers\": headers };\nString(url + ',' + JSON.stringify(option));";
+}
+function decrypt(data) {
+    try {
+        let dataBytes = com.blankj.utilcode.util.EncodeUtils.base64Decode(data);
+        let keyBytes = com.blankj.utilcode.util.ConvertUtils.string2Bytes('Z6aESpmGB62yNYsh', 'ASCII');
+        let ivBytes = com.blankj.utilcode.util.ConvertUtils.string2Bytes('JNWmRJjiDJ7wHtTh', 'UTF-8');
+        let decryptBytes = com.blankj.utilcode.util.EncryptUtils.decryptAES(dataBytes, keyBytes, 'AES/CBC/PKCS5Padding', ivBytes);
+        let decrypt = com.blankj.utilcode.util.ConvertUtils.bytes2String(decryptBytes, 'UTF-8');
+        return decrypt;
+    } catch (error) {
+    }
+    return data;
+}
+let json = JSON.parse(decrypt(result));
+let data = json.data;
+let chapters = [];
+data.chapterGroup[0].chapters.forEach(chapter =&gt; {
+    chapters.push(
+        {
+            title: chapter.name,
+            url: chapterUrl(chapter.id)
+        }
+    );
+});
+chapters;</string><key>chapterName</key><string>title</string><key>chapterUrl</key><string>url</string><key>isVip</key><string></string><key>nextTocUrl</key><string></string><key>updateTime</key><string></string></dict><key>searchUrl</key><string>@js://搜索URL
+let url = ['http://6954acc.games.mhd100.com/app2/comic/search?sort=click&amp;page=' + page + '&amp;keywords=', encodeURIComponent(key)].join('');
+let time = [Math.floor(Date.now() / 1000)].join('');
+let str1 = ['8f23ff99a82668c274e4f67c97714a00', url.substring(31), time, 'DBFKn3THj8dhFNxM'].join('');
+let md51 = [com.blankj.utilcode.util.EncryptUtils.encryptMD5ToString(str1).toLowerCase()].join('');
+let str2 = ['c3L7GR7W7jcmdZNjcom.shenl.qinqinmh2', md51].join('');
+let sign = [com.blankj.utilcode.util.EncryptUtils.encryptMD5ToString(str2).toLowerCase()].join('');
+let headers = {
+    'User-Agent': 'QQMH Android Client/1.0 (qinqinmanhua@gmail.com)',
+    'Referer': 'http://2106s.api.mhd100.com/',
+    'x-version': '2628',
+    'x-time': time,
+    'x-sign': sign
+};
+let option = { "headers": headers };
+String(url + ',' + JSON.stringify(option));</string><key>sort</key><integer>1</integer><key>star</key><integer>5</integer><key>weight</key><integer>0</integer></dict><key>status</key><integer>1</integer><key>star</key><integer>5</integer><key>add_time</key><string>2023-06-01 16:16:10</string><key>is_ceshi</key><integer>2</integer><key>is_app</key><integer>1</integer></dict><dict><key>id</key><integer>75</integer><key>site_name</key><string>哔哩哔哩漫画</string><key>domain</key><string>manga.bilibili.com</string><key>sort</key><integer>6</integer><key>parse_rule</key><dict><key>bookSourceComment</key><string></string><key>bookSourceGroup</key><string></string><key>bookSourceName</key><string>哔哩哔哩漫画</string><key>bookSourceType</key><integer>2</integer><key>bookSourceUrl</key><string>https://manga.bilibili.com</string><key>customOrder</key><integer>-2147483640</integer><key>enabled</key><true/><key>header</key><string></string><key>lastUpdateTime</key><integer>1620460744162</integer><key>loginUrl</key><string>https://www.bilibili.com</string><key>ruleBookInfo</key><dict><key>author</key><string>$..author_name##[\[\]\"]</string><key>intro</key><string>$..evaluate</string><key>kind</key><string>$..styles##[\[\]\"]</string><key>lastChapter</key><string>$..ep_list[0]short_title</string><key>name</key><string>$.data.title</string></dict><key>ruleContent</key><dict><key>content</key><string>&lt;js&gt;
+//获取图像token
+function getImageToken(path){
+let a={
+  urls: '[\"'+path+"@748w.jpg"+'\"]'
+},
+b={
+"method": "POST",
+"body": JSON.stringify(a),
+"headers": {"Referer":"https://manga.bilibili.com/mc"+java.get("bid")+"/"+java.get("epid")+"?from=manga_detail"}
+}
+
+URL="https://manga.bilibili.com/twirp/comic.v1.Comic/ImageToken?device=pc&amp;platform=web,"+JSON.stringify(b);
+java.setContent(java.ajax(URL));
+url=java.getString("$..url",false);
+token=java.getString("$..token",false);
+return url+"?token="+token
+}
+
+b={
+"headers": {"Referer":"https://manga.bilibili.com/mc"+java.get("bid")+"/"+java.get("epid")+"?from=manga_detail"}
+}
+//加了不会有水印??
+
+java.getStringList("$.data.images[*].path").toArray().map(path=&gt;{
+return '&lt;img src="'+getImageToken(path)+","+JSON.stringify(b)+'"&gt;'
+}).join("\n")
+&lt;/js&gt;</string><key>imageStyle</key><string>FULL</string></dict><key>ruleSearch</key><dict><key>author</key><string>$.author_name||$.author[*]||$.authors</string><key>bookList</key><string>$..list[*]||$.data</string><key>bookUrl</key><string>comic_id||$.season_id||$.id
+&lt;js&gt;
+bid=result;
+java.put("bid",bid);
+let a={"comic_id":bid},
+b={
+"method": "POST",
+"body": JSON.stringify(a),
+"headers": {"Referer":"https://manga.bilibili.com/detail/mc"+bid+"?from=manga_serach"}
+}
+
+"/twirp/comic.v1.Comic/ComicDetail?device=pc&amp;platform=web,"+JSON.stringify(b)
+&lt;/js&gt;</string><key>coverUrl</key><string>$.vertical_cover</string><key>intro</key><string>$.introduction</string><key>kind</key><string>$.styles[*]name||||$.styles</string><key>lastChapter</key><string>$.last_short_title##(.*)##$1话###</string><key>name</key><string>$.org_title||$.title##&lt;.*?&gt;</string><key>wordCount</key><string>$.is_finish@js:/0/.test(result)?"连载":"完结"</string></dict><key>ruleToc</key><dict><key>chapterList</key><string>-$..ep_list[*]</string><key>chapterName</key><string>$.short_title</string><key>chapterUrl</key><string>$.id
+&lt;js&gt;
+epid=result;
+java.put("epid",epid);
+let a={"ep_id":epid},
+b={
+"method": "POST",
+"body": JSON.stringify(a),
+"headers": {"Referer":"https://manga.bilibili.com/mc"+java.get("bid")+"/"+epid+"?from=manga_detail"}
+}
+
+"/twirp/comic.v1.Comic/GetImageIndex?device=pc&amp;platform=web,"+JSON.stringify(b)
+&lt;/js&gt;</string><key>isVip</key><string>$.is_locked</string><key>updateTime</key><string>$.pub_time</string></dict><key>searchUrl</key><string>&lt;js&gt;
+
+let a={"key_word":key,"page_num":1,"page_size":9},
+c={"Referer":"https://manga.bilibili.com/search?from=manga_homepage&amp;keyword="+encodeURIComponent(key)}
+b={
+"method": "POST",
+"body": JSON.stringify(a),
+"headers": JSON.stringify(c)
+}
+
+"/twirp/comic.v1.Comic/Search?device=pc&amp;platform=web,"+JSON.stringify(b)
+&lt;/js&gt;</string><key>weight</key><integer>0</integer></dict><key>status</key><integer>1</integer><key>star</key><integer>4</integer><key>add_time</key><string>2023-06-01 16:16:10</string><key>is_ceshi</key><integer>2</integer><key>is_app</key><integer>2</integer></dict><dict><key>id</key><integer>76</integer><key>site_name</key><string>漫客栈</string><key>domain</key><string>comic.mkzhan.com</string><key>sort</key><integer>6</integer><key>parse_rule</key><dict><key>bookSourceComment</key><string></string><key>bookSourceGroup</key><string></string><key>bookSourceName</key><string>漫客栈</string><key>bookSourceType</key><integer>2</integer><key>bookSourceUrl</key><string>https://comic.mkzhan.com/</string><key>bookUrlPattern</key><string></string><key>customOrder</key><integer>-2147483639</integer><key>enabled</key><true/><key>enabledCookieJar</key><false/><key>header</key><string></string><key>lastUpdateTime</key><integer>1662012464669</integer><key>loginUrl</key><string></string><key>respondTime</key><integer>65228</integer><key>ruleBookInfo</key><dict><key>intro</key><string>$.data.content</string><key>lastChapter</key><string>$.data.chapter_title</string><key>name</key><string>$.data.title</string><key>tocUrl</key><string>https://comic.mkzhan.com/chapter/?comic_id={{$.data.comic_id}}
+@js:
+z=result
+a={
+  "body": "oauth_id=402&amp;oauth_data=%7B%22unionid%22%3A%223227d2ee22e30fcd847e78da026ee6da%22%7D",
+  "method": "POST"
+}
+b=java.ajax("https://member.mkzcdn.com/login/oauth/,"+JSON.stringify(a))
+java.log(b)
+data=JSON.parse(b).data
+sign=data.sign
+uid=data.uid
+java.put("sign",sign)
+java.put("uid",uid)
+z</string></dict><key>ruleContent</key><dict><key>content</key><string>@js:
+let list = JSON.parse(result).data.page.map((i)=&gt;{
+	return '&lt;img src="'+i.image+'" /&gt;'
+	})
+String(list).replace(new RegExp(",","gi"),"")</string></dict><key>ruleSearch</key><dict><key>author</key><string>$.author_title</string><key>bookList</key><string>$.data.list.*</string><key>bookUrl</key><string>https://comic.mkzhan.com/comic/info/?comic_id={{$.comic_id}}</string><key>coverUrl</key><string>$.cover@js:result.replace(/\.(jpg|JPG).*/g,".$1!cover-400")</string><key>lastChapter</key><string>$.chapter_title</string><key>name</key><string>@js:
+java.put("comic_id",result.comic_id)
+result.title</string></dict><key>ruleToc</key><dict><key>chapterList</key><string>$.data.*</string><key>chapterName</key><string>$.title</string><key>chapterUrl</key><string>
+https://comic.mkzhan.com/chapter/content/v1/?chapter_id={{$.chapter_id}}&amp;comic_id={{java.get("comic_id")}}&amp;format=1&amp;quality=1&amp;sign={{java.get("sign")}}&amp;type=1&amp;uid={{java.get("uid")}}</string><key>isVip</key><string>$.is_vip</string><key>isVolume</key><string></string><key>updateTime</key><string></string></dict><key>searchUrl</key><string>https://comic.mkzhan.com/search/keyword/?keyword={{key}}&amp;page_num={{page}}&amp;page_size=20</string><key>weight</key><integer>0</integer></dict><key>status</key><integer>1</integer><key>star</key><integer>4</integer><key>add_time</key><string>2023-06-01 16:16:10</string><key>is_ceshi</key><integer>2</integer><key>is_app</key><integer>2</integer></dict><dict><key>id</key><integer>78</integer><key>site_name</key><string>冰氪漫画</string><key>domain</key><string>ikr.ejujiu.com</string><key>sort</key><integer>9</integer><key>parse_rule</key><dict><key>bookSourceComment</key><string></string><key>bookSourceGroup</key><string></string><key>bookSourceName</key><string>冰氪漫画</string><key>bookSourceType</key><integer>0</integer><key>bookSourceUrl</key><string>http://ikr.ejujiu.com</string><key>customOrder</key><integer>-2147483638</integer><key>enabled</key><true/><key>enabledExplore</key><true/><key>exploreUrl</key><string></string><key>lastUpdateTime</key><integer>1642693125399</integer><key>respondTime</key><integer>3448</integer><key>ruleBookInfo</key><dict><key>author</key><string>tag.dd.1@text</string><key>coverUrl</key><string>tag.mip-img@src</string><key>intro</key><string>class.txtDesc autoHeight@text</string><key>kind</key><string>tag.dd.2@text</string><key>lastChapter</key><string>class.coll@text</string><key>name</key><string>tag.h1@class.title@text</string><key>tocUrl</key><string></string></dict><key>ruleContent</key><dict><key>content</key><string>@js:
+var options={"headers":{"Referer":baseUrl}};
+(function getImgList() {
+eval(result.match(/chapterImages\s*=\s*[^;]*/)[0])
+eval(result.match(/chapterPath\s*=\s*[^;]*/)[0])
+return chapterImages;&#13;
+}()).map(uri=&gt;
+'&lt;img src="'+'https://res.xiaoqinre.com/'+chapterPath+uri+","+JSON.stringify(options)+'"/&gt;').join("\n")</string><key>imageStyle</key><string>FULL</string><key>nextContentUrl</key><string></string></dict><key>ruleExplore</key><dict><key>bookList</key><string></string><key>name</key><string></string></dict><key>ruleSearch</key><dict><key>author</key><string>tag.p@class.txtItme@textNodes</string><key>bookList</key><string>class.itemBox</string><key>bookUrl</key><string>class.title@tag.a@href</string><key>checkKeyWord</key><string>斗罗</string><key>coverUrl</key><string>tag.mip-img@src</string><key>intro</key><string></string><key>kind</key><string>class.pd@text</string><key>lastChapter</key><string>class.coll@text</string><key>name</key><string>class.title@text</string></dict><key>ruleToc</key><dict><key>chapterList</key><string>class.list@tag.ul@tag.li</string><key>chapterName</key><string>tag.a@tag.span@text</string><key>chapterUrl</key><string>tag.a@href</string></dict><key>searchUrl</key><string>https://m.gufengmh.com/search/?keywords={{key}}</string><key>weight</key><integer>0</integer></dict><key>status</key><integer>1</integer><key>star</key><integer>2</integer><key>add_time</key><string>2023-07-24 17:11:08</string><key>is_ceshi</key><integer>2</integer><key>is_app</key><integer>2</integer></dict><dict><key>id</key><integer>79</integer><key>site_name</key><string>漫画人</string><key>domain</key><string>m.1kkk.com</string><key>sort</key><integer>6</integer><key>parse_rule</key><dict><key>bookSourceComment</key><string></string><key>bookSourceGroup</key><string></string><key>bookSourceName</key><string>漫画人</string><key>bookSourceType</key><integer>2</integer><key>bookSourceUrl</key><string>https://m.1kkk.com</string><key>bookUrlPattern</key><string></string><key>customOrder</key><integer>-2147483637</integer><key>enabled</key><true/><key>header</key><string></string><key>lastUpdateTime</key><integer>1623324790628</integer><key>loginUrl</key><string></string><key>ruleBookInfo</key><dict><key>author</key><string>p.detail-main-info-author@tag.a@text</string><key>coverUrl</key><string>img.detail-main-bg@src</string><key>intro</key><string>p.detail-desc@text</string><key>kind</key><string>p.detail-main-info-class@tag.a@text</string><key>lastChapter</key><string>ul.detail-list-select@tag,li.0@text</string><key>name</key><string>p.detail-main-info-title@text</string><key>wordCount</key><string></string></dict><key>ruleContent</key><dict><key>content</key><string>@js:header={"Referer":baseUrl};
+headers={"headers":JSON.stringify(header)};
+eval(result.match(/eval(.*?)\{\}\)\)/)[0])
+var image_list = []
+newImgs.map(item=&gt;{
+    image_list.push('&lt;img src="'+item+','+JSON.stringify(headers)+'"&gt;')
+})
+image_list.join("\n")</string><key>imageStyle</key><string></string><key>nextContentUrl</key><string></string></dict><key>ruleSearch</key><dict><key>author</key><string>tag.p.0@text</string><key>bookList</key><string>ul.book-list@tag.li</string><key>bookUrl</key><string>tag.a.0@href</string><key>coverUrl</key><string>tag.img@src</string><key>kind</key><string></string><key>lastChapter</key><string></string><key>name</key><string>p.book-list-info-title@text</string><key>intro</key><string>p.book-list-info-desc@text</string></dict><key>ruleToc</key><dict><key>chapterList</key><string>ul.detail-list-select@li</string><key>chapterName</key><string>tag.a@text</string><key>chapterUrl</key><string>tag.a@href</string><key>isVip</key><string>@js:var vip_bool = result.select('img').hasClass('detail-list-lock');
+if(!vip_bool){
+vip_bool = result.select('img').hasClass('detail-list-2-info-right');
+}
+vip_bool;</string></dict><key>searchUrl</key><string>https://m.1kkk.com/search?title={{key}}&amp;language=1</string><key>weight</key><integer>0</integer></dict><key>status</key><integer>1</integer><key>star</key><integer>4</integer><key>add_time</key><string>2023-06-01 16:16:10</string><key>is_ceshi</key><integer>2</integer><key>is_app</key><integer>2</integer></dict><dict><key>id</key><integer>80</integer><key>site_name</key><string>漫画台</string><key>domain</key><string>m.manhuatai.com</string><key>sort</key><integer>6</integer><key>parse_rule</key><dict><key>bookSourceComment</key><string></string><key>bookSourceGroup</key><string></string><key>bookSourceName</key><string>漫画台</string><key>bookSourceType</key><integer>2</integer><key>bookSourceUrl</key><string>https://m.manhuatai.com</string><key>bookUrlPattern</key><string></string><key>customOrder</key><integer>-2147483636</integer><key>enabled</key><true/><key>header</key><string></string><key>lastUpdateTime</key><integer>1623324790628</integer><key>loginUrl</key><string></string><key>ruleBookInfo</key><dict><key>author</key><string>p.detail-main-info-author@tag.a@text</string><key>coverUrl</key><string>img.detail-main-bg@src</string><key>intro</key><string>p.detail-desc@text</string><key>kind</key><string>p.detail-main-info-class@tag.a@text</string><key>lastChapter</key><string>ul.detail-list-select@tag,li.0@text</string><key>name</key><string>p.detail-main-info-title@text</string><key>wordCount</key><string></string></dict><key>ruleContent</key><dict><key>content</key><string>@js:header={"Referer":baseUrl};
+headers={"headers":JSON.stringify(header)};var comic_id = result.match(/comic_id:(.*?),/)[1];chapter_newid = result.match(/,chapter_newid:"(.*?)",/)[1];var data = JSON.parse(java.ajax('https://m.kanman.com/api/getchapterinfov2?product_id=1&amp;productname=kmh&amp;platformname=wap&amp;comic_id='+comic_id+'&amp;chapter_newid='+chapter_newid+'&amp;isWebp=1&amp;quality=low'));var newImgs= data.data.current_chapter.chapter_img_list;var image_list = [];
+newImgs.map(item=&gt;{
+    image_list.push('&lt;img src="'+item+','+JSON.stringify(headers)+'"&gt;')
+})
+image_list.join("\n");</string><key>imageStyle</key><string></string><key>nextContentUrl</key><string></string></dict><key>ruleSearch</key><dict><key>author</key><string>tag.p.0@text</string><key>bookList</key><string>ul#js_comicSortList@li.comic-item</string><key>bookUrl</key><string>tag.a.0@href</string><key>coverUrl</key><string>tag.img@data-src</string><key>kind</key><string></string><key>lastChapter</key><string>span.chapter@text</string><key>name</key><string>p.title@text</string></dict><key>ruleToc</key><dict><key>chapterList</key><string>ul#js_chapter_list@li</string><key>chapterName</key><string>tag.a@text</string><key>chapterUrl</key><string>tag.a@href</string></dict><key>searchUrl</key><string>https://m.manhuatai.com/sort/all.html?cache=false&amp;search_key={{key}}</string><key>weight</key><integer>0</integer></dict><key>status</key><integer>1</integer><key>star</key><integer>4</integer><key>add_time</key><string>2023-06-01 16:16:10</string><key>is_ceshi</key><integer>2</integer><key>is_app</key><integer>2</integer></dict><dict><key>id</key><integer>81</integer><key>site_name</key><string>看漫画</string><key>domain</key><string>m.kanman.com</string><key>sort</key><integer>6</integer><key>parse_rule</key><dict><key>bookSourceComment</key><string></string><key>bookSourceGroup</key><string></string><key>bookSourceName</key><string>看漫画</string><key>bookSourceType</key><integer>2</integer><key>bookSourceUrl</key><string>https://m.kanman.com</string><key>bookUrlPattern</key><string></string><key>customOrder</key><integer>-2147483635</integer><key>enabled</key><true/><key>header</key><string></string><key>lastUpdateTime</key><integer>1623324790628</integer><key>loginUrl</key><string></string><key>ruleBookInfo</key><dict><key>author</key><string>p.detail-main-info-author@tag.a@text</string><key>coverUrl</key><string>img.detail-main-bg@src</string><key>intro</key><string>p.detail-desc@text</string><key>kind</key><string>p.detail-main-info-class@tag.a@text</string><key>lastChapter</key><string>ul.detail-list-select@tag,li.0@text</string><key>name</key><string>p.detail-main-info-title@text</string><key>wordCount</key><string></string></dict><key>ruleContent</key><dict><key>content</key><string>@js:header={"Referer":baseUrl};
+headers={"headers":JSON.stringify(header)};var comic_id = result.match(/comic_id:(.*?),/)[1];chapter_newid = result.match(/,chapter_newid:"(.*?)",/)[1];var data = JSON.parse(java.ajax('https://m.kanman.com/api/getchapterinfov2?product_id=1&amp;productname=kmh&amp;platformname=wap&amp;comic_id='+comic_id+'&amp;chapter_newid='+chapter_newid+'&amp;isWebp=1&amp;quality=low'));var newImgs= data.data.current_chapter.chapter_img_list;var image_list = [];
+newImgs.map(item=&gt;{
+    image_list.push('&lt;img src="'+item+','+JSON.stringify(headers)+'"&gt;')
+})
+image_list.join("\n");</string><key>imageStyle</key><string></string><key>nextContentUrl</key><string></string></dict><key>ruleSearch</key><dict><key>author</key><string>tag.p.0@text</string><key>bookList</key><string>ul#js_comicSortList@li.comic-item</string><key>bookUrl</key><string>tag.a.0@href</string><key>coverUrl</key><string>tag.img@data-src</string><key>kind</key><string></string><key>lastChapter</key><string>span.chapter@text</string><key>name</key><string>p.title@text</string></dict><key>ruleToc</key><dict><key>chapterList</key><string>ul#js_chapter_list@li</string><key>chapterName</key><string>tag.a@text</string><key>chapterUrl</key><string>tag.a@href</string></dict><key>searchUrl</key><string>https://m.kanman.com/sort/all.html?cache=false&amp;search_key={{key}}</string><key>weight</key><integer>0</integer></dict><key>status</key><integer>1</integer><key>star</key><integer>4</integer><key>add_time</key><string>2023-06-01 16:16:10</string><key>is_ceshi</key><integer>2</integer><key>is_app</key><integer>2</integer></dict><dict><key>id</key><integer>82</integer><key>site_name</key><string>动漫屋</string><key>domain</key><string>m.dm5.com</string><key>sort</key><integer>6</integer><key>parse_rule</key><dict><key>bookSourceComment</key><string></string><key>bookSourceGroup</key><string></string><key>bookSourceName</key><string>动漫屋</string><key>bookSourceType</key><integer>2</integer><key>bookSourceUrl</key><string>https://m.dm5.com</string><key>bookUrlPattern</key><string></string><key>customOrder</key><integer>-2147483634</integer><key>enabled</key><true/><key>header</key><string></string><key>lastUpdateTime</key><integer>1623324790628</integer><key>loginUrl</key><string></string><key>ruleBookInfo</key><dict><key>author</key><string>p.detail-main-info-author@tag.a@text</string><key>coverUrl</key><string>img.detail-main-bg@src</string><key>intro</key><string>p.detail-desc@text</string><key>kind</key><string>p.detail-main-info-class@tag.a@text</string><key>lastChapter</key><string>ul.detail-list-select@tag,li.0@text</string><key>name</key><string>p.detail-main-info-title@text</string><key>wordCount</key><string></string></dict><key>ruleContent</key><dict><key>content</key><string>@js:header={"Referer":baseUrl};
+headers={"headers":JSON.stringify(header)};
+eval(result.match(/eval(.*?)\{\}\)\)/)[0])
+var image_list = []
+newImgs.map(item=&gt;{
+    image_list.push('&lt;img src="'+item+','+JSON.stringify(headers)+'"&gt;')
+})
+image_list.join("\n")</string><key>imageStyle</key><string></string><key>nextContentUrl</key><string></string></dict><key>ruleSearch</key><dict><key>author</key><string>tag.p.0@text</string><key>bookList</key><string>ul.book-list@tag.li</string><key>bookUrl</key><string>tag.a.0@href</string><key>coverUrl</key><string>tag.img@src</string><key>kind</key><string></string><key>lastChapter</key><string></string><key>name</key><string>p.book-list-info-title@text</string><key>intro</key><string>p.book-list-info-desc@text</string></dict><key>ruleToc</key><dict><key>chapterList</key><string>-ul.detail-list-select@li</string><key>chapterName</key><string>tag.a@text</string><key>chapterUrl</key><string>tag.a@href</string></dict><key>searchUrl</key><string>https://m.dm5.com/search?title={{key}}&amp;language=1</string><key>weight</key><integer>0</integer></dict><key>status</key><integer>1</integer><key>star</key><integer>4</integer><key>add_time</key><string>2023-06-01 16:16:10</string><key>is_ceshi</key><integer>2</integer><key>is_app</key><integer>2</integer></dict><dict><key>id</key><integer>83</integer><key>site_name</key><string>下拉式漫画</string><key>domain</key><string>m.gufengmh.com</string><key>sort</key><integer>7</integer><key>parse_rule</key><dict><key>bookSourceComment</key><string></string><key>bookSourceGroup</key><string></string><key>bookSourceName</key><string>下拉式漫画</string><key>bookSourceType</key><integer>0</integer><key>bookSourceUrl</key><string>http://www.gufengmh.com</string><key>customOrder</key><integer>-2147483633</integer><key>enabled</key><true/><key>enabledExplore</key><true/><key>exploreUrl</key><string></string><key>lastUpdateTime</key><integer>1642693125399</integer><key>respondTime</key><integer>3448</integer><key>ruleBookInfo</key><dict><key>author</key><string>tag.dd.1@text</string><key>coverUrl</key><string>tag.mip-img@src</string><key>intro</key><string>class.txtDesc autoHeight@text</string><key>kind</key><string>tag.dd.2@text</string><key>lastChapter</key><string>class.coll@text</string><key>name</key><string>tag.h1@class.title@text</string><key>tocUrl</key><string></string></dict><key>ruleContent</key><dict><key>content</key><string>@js:
+var options={"headers":{"Referer":baseUrl}};
+(function getImgList() {
+eval(result.match(/chapterImages\s*=\s*[^;]*/)[0])
+eval(result.match(/chapterPath\s*=\s*[^;]*/)[0])
+return chapterImages;&#13;
+}()).map(uri=&gt;
+'&lt;img src="'+'https://res.xiaoqinre.com/'+chapterPath+uri+","+JSON.stringify(options)+'"/&gt;').join("\n")</string><key>imageStyle</key><string>FULL</string><key>nextContentUrl</key><string></string></dict><key>ruleExplore</key><dict><key>bookList</key><string></string><key>name</key><string></string></dict><key>ruleSearch</key><dict><key>author</key><string>tag.p@class.txtItme@textNodes</string><key>bookList</key><string>class.itemBox</string><key>bookUrl</key><string>class.title@tag.a@href</string><key>checkKeyWord</key><string>斗罗</string><key>coverUrl</key><string>tag.mip-img@src</string><key>intro</key><string></string><key>kind</key><string>class.pd@text</string><key>lastChapter</key><string>class.coll@text</string><key>name</key><string>class.title@text</string></dict><key>ruleToc</key><dict><key>chapterList</key><string>class.list@tag.ul@tag.li</string><key>chapterName</key><string>tag.a@tag.span@text</string><key>chapterUrl</key><string>tag.a@href</string></dict><key>searchUrl</key><string>https://m.gufengmh.com/search/?keywords={{key}}</string><key>weight</key><integer>0</integer></dict><key>status</key><integer>1</integer><key>star</key><integer>4</integer><key>add_time</key><string>2023-07-24 17:11:26</string><key>is_ceshi</key><integer>2</integer><key>is_app</key><integer>2</integer></dict><dict><key>id</key><integer>84</integer><key>site_name</key><string>GoDa漫画</string><key>domain</key><string>cn.godamanga.art</string><key>sort</key><integer>8</integer><key>parse_rule</key><dict><key>bookSourceComment</key><string></string><key>bookSourceGroup</key><string></string><key>bookSourceName</key><string>GoDa漫画</string><key>bookSourceType</key><integer>2</integer><key>bookSourceUrl</key><string>https://cn.godamanga.art</string><key>bookUrlPattern</key><string></string><key>customOrder</key><integer>-2147483632</integer><key>enabled</key><true/><key>header</key><string></string><key>lastUpdateTime</key><integer>1623324790628</integer><key>loginUrl</key><string></string><key>ruleBookInfo</key><dict><key>author</key><string>class.author-content@tag.a.0@text</string><key>coverUrl</key><string>tag.figure@tag.img@src</string><key>intro</key><string>p.stk-block-text__text@text</string><key>kind</key><string></string><key>lastChapter</key><string>class.listing-chapters_wrap@tag.ul@tag.li.0@text</string><key>name</key><string>h1.stk-block-heading__text@text</string><key>wordCount</key><string></string></dict><key>ruleContent</key><dict><key>content</key><string>class.stk-block-content@tag.noscript@tag.img@src@js:
+header={"Referer":baseUrl};
+headers={"headers":JSON.stringify(header)};
+var image_list=[];
+result.split("\n").map(item=&gt;{
+    image_list.push('&lt;img src="'+item+','+JSON.stringify(headers)+'"&gt;')
+})
+image_list.join("\n");</string><key>imageStyle</key><string></string><key>nextContentUrl</key><string></string></dict><key>ruleSearch</key><dict><key>author</key><string></string><key>bookList</key><string>class.entries@tag.article</string><key>bookUrl</key><string>h2.entry-title@tag.a@href@js:result.replace('/manga/','/chapterlist/')</string><key>coverUrl</key><string>tag.img@src</string><key>kind</key><string></string><key>lastChapter</key><string></string><key>name</key><string>h2.entry-title@tag.a@text</string></dict><key>ruleToc</key><dict><key>chapterList</key><string>-class.listing-chapters_wrap@tag.ul@tag.a</string><key>chapterName</key><string>text@js:result.split(' ')[0]</string><key>chapterUrl</key><string>href</string></dict><key>searchUrl</key><string>https://cn.godamanga.art/?s={{key}}&amp;post_type=wp-manga</string><key>weight</key><integer>0</integer></dict><key>status</key><integer>1</integer><key>star</key><integer>4</integer><key>add_time</key><string>2023-06-01 16:16:10</string><key>is_ceshi</key><integer>2</integer><key>is_app</key><integer>2</integer></dict><dict><key>id</key><integer>85</integer><key>site_name</key><string>微博漫画</string><key>domain</key><string>manhua.weibo.cn</string><key>sort</key><integer>6</integer><key>parse_rule</key><dict><key>bookSourceComment</key><string></string><key>bookSourceGroup</key><string></string><key>bookSourceName</key><string>微博漫画</string><key>bookSourceType</key><integer>2</integer><key>bookSourceUrl</key><string>https://manhua.weibo.cn</string><key>bookUrlPattern</key><string></string><key>customOrder</key><integer>-2147483631</integer><key>enabled</key><true/><key>header</key><string>{
+    "User-Agent": "Mozilla/5.0 (Linux; Android 11; Pixel 5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.91 Mobile Safari/537.36 Edg/113.0.0.0"
+}</string><key>lastUpdateTime</key><integer>1623324790628</integer><key>loginUrl</key><string></string><key>ruleBookInfo</key><dict><key>author</key><string>class.sub_r@tag.p.0@text</string><key>coverUrl</key><string>id.Cover@tag.img@src</string><key>intro</key><string>class.txtDesc@text##介绍:</string><key>kind</key><string>class.sub_r@tag.p.1@tag.a@text</string><key>lastChapter</key><string>id.chapter-list-1@tag.li.-2@tag.a@tag.span@text</string><key>name</key><string>id.comicName@text</string><key>wordCount</key><string>class.date@text</string></dict><key>ruleContent</key><dict><key>content</key><string>@js:var chapter_id = baseUrl.match(/p\/(.*)/)[1];var detail_url='https://manhua.weibo.cn/wbcomic/comic/comic_play?chapter_id='+chapter_id+'&amp;create_source=h5&amp;_=1632385138030&amp;_type=h5';var header = {'Referer': baseUrl,'User-Agent':'Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1'};var newImgs = [];var data = JSON.parse(java.get(detail_url,header).body());data.data.json_content.page.map(item=&gt;{newImgs.push(item.mobileImgUrl)});
+headers={"headers":JSON.stringify(header)};
+var image_list=[];
+newImgs.map(item=&gt;{
+    image_list.push('&lt;img src="'+item+','+JSON.stringify(headers)+'"&gt;')
+})
+image_list.join("\n");</string><key>imageStyle</key><string></string><key>nextContentUrl</key><string></string></dict><key>ruleSearch</key><dict><key>author</key><string>$.sina_nickname</string><key>bookList</key><string>$.data.data</string><key>bookUrl</key><string>$.comic_id@js:'/c/'+result</string><key>coverUrl</key><string>$.cover</string><key>kind</key><string></string><key>lastChapter</key><string></string><key>name</key><string>$.name</string></dict><key>ruleToc</key><dict><key>chapterList</key><string>@js:var header = {'Referer': baseUrl,'User-Agent':'Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1'};
+var comic_id = baseUrl.match(/c\/(.*)/)[1];
+var search_url = 'https://manhua.weibo.cn/wbcomic/comic/comic_show?comic_id='+comic_id+'&amp;create_source=h5&amp;_=1632383937751&amp;_type=h5';
+var chapter_list = [];
+var body=java.get(search_url,header).body();
+var data = JSON.parse(body);
+var free_id_str = data.data.comic.chapter_tryread_ids;
+var free_id_arr =free_id_str.split(',') ;
+data.data.chapter_list.map(item=&gt;{
+var isVip = false;
+if(free_id_arr.indexOf(item.chapter_id) == -1 &amp;&amp; free_id_str != ''){isVip=true;}
+chapter_list.push({title:item.chapter_name,url:'https://manhua.weibo.cn/p/'+item.chapter_id,isVip:isVip})});
+chapter_list;</string><key>chapterName</key><string>title</string><key>chapterUrl</key><string>url</string><key>isVip</key><string>isVip</string></dict><key>searchUrl</key><string>https://manhua.weibo.cn/wbcomic/home/search?word={{key}}&amp;page_num=1&amp;_type=h5</string><key>weight</key><integer>0</integer></dict><key>status</key><integer>1</integer><key>star</key><integer>4</integer><key>add_time</key><string>2023-06-01 16:16:10</string><key>is_ceshi</key><integer>2</integer><key>is_app</key><integer>2</integer></dict><dict><key>id</key><integer>86</integer><key>site_name</key><string>漫漫漫画</string><key>domain</key><string>www.manmanapp.com</string><key>sort</key><integer>6</integer><key>parse_rule</key><dict><key>bookSourceComment</key><string></string><key>bookSourceName</key><string>漫漫漫画</string><key>bookSourceType</key><integer>0</integer><key>bookSourceUrl</key><string>https://www.manmanapp.com</string><key>customOrder</key><integer>-2147483630</integer><key>enabled</key><true/><key>enabledExplore</key><true/><key>exploreUrl</key><string>全部::/comic/category_{{page}}.html
+兄弟情::/comic/category-5_{{page}}.html
+恋爱::/comic/category-4_{{page}}.html
+都市::/comic/category-18_{{page}}.html
+霸总::/comic/category-9_{{page}}.html
+校园::/comic/category-8_{{page}}.html
+古风::/comic/category-7_{{page}}.html
+搞笑::/comic/category-6_{{page}}.html
+暖萌::/comic/category-10_{{page}}.html
+日常::/comic/category-12_{{page}}.html
+奇幻::/comic/category-13_{{page}}.html
+悬疑::/comic/category-15_{{page}}.html
+仙侠::/comic/category-16_{{page}}.html
+热血::/comic/category-17_{{page}}.html
+恐怖::/comic/category-19_{{page}}.html
+</string><key>lastUpdateTime</key><integer>1610036267717</integer><key>ruleBookInfo</key><dict><key>canReName</key><string></string><key>coverUrl</key><string>class.pic@img@src</string><key>intro</key><string>class.supplement@text</string><key>kind</key><string>{{book.kind}},{{@@class.type@text}}##类型：</string><key>lastChapter</key><string>class.comic_list@tag.li.0@h4@img@src&amp;&amp;class.comic_list@tag.li.0@h3@text##.*book_ic.*?\n##</string><key>tocUrl</key><string>https://www.manmanapp.com/works/comic-list-ajax.html,{
+"method": "POST",
+"body": "id={{java.put('page',1);result=baseUrl.match(/(\d+)\.html/)[1];java.put('id',result)}}&amp;sort=1&amp;page=1"}</string></dict><key>ruleContent</key><dict><key>content</key><string>class.man_img@html</string><key>imageStyle</key><string>FULL</string><key>nextContentUrl</key><string></string></dict><key>ruleExplore</key><dict><key>intro</key><string></string><key>kind</key><string></string><key>lastChapter</key><string></string></dict><key>ruleSearch</key><dict><key>author</key><string>class.subtitle@text</string><key>bookList</key><string>class.classification</string><key>bookUrl</key><string>tag.a.0@href</string><key>coverUrl</key><string>img@src</string><key>intro</key><string>class.text@text</string><key>kind</key><string>❤️{{@@class.supplement@ownText}}</string><key>name</key><string>class.title@text</string></dict><key>ruleToc</key><dict><key>chapterList</key><string>$.data</string><key>chapterName</key><string>$.title</string><key>chapterUrl</key><string>https://www.manmanapp.com/comic/detail-{{$.id}}.html</string><key>isVip</key><string>@js:'{{$.is_read}}'=='0'?'1':''</string><key>nextTocUrl</key><string>@js:
+code='{{$.code}}';
+if(code=='1'){
+page=java.get('page');
+page=parseInt(page)+1;
+java.put('page',page);
+id=java.get('id');
+url='https://www.manmanapp.com/works/comic-list-ajax.html,';
+body='id='+id+'&amp;sort=1&amp;page='+page;
+post={
+"method": "POST",
+"body":String(body)
+}
+result=url+JSON.stringify(post);
+}</string><key>updateTime</key><string>$.publish_time</string></dict><key>searchUrl</key><string>https://www.manmanapp.com/search/word-{{key}}.html</string><key>weight</key><integer>0</integer></dict><key>status</key><integer>1</integer><key>star</key><integer>4</integer><key>add_time</key><string>2023-06-01 16:16:10</string><key>is_ceshi</key><integer>2</integer><key>is_app</key><integer>2</integer></dict><dict><key>id</key><integer>87</integer><key>site_name</key><string>最漫画</string><key>domain</key><string>m.zuimh.com</string><key>sort</key><integer>6</integer><key>parse_rule</key><dict><key>bookSourceComment</key><string></string><key>bookSourceGroup</key><string>漫画</string><key>bookSourceName</key><string>最漫画</string><key>bookSourceType</key><integer>0</integer><key>bookSourceUrl</key><string>https://m.zuimh.com</string><key>customOrder</key><integer>-2147483629</integer><key>enabled</key><true/><key>enabledExplore</key><true/><key>exploreUrl</key><string>全部::/list/?page={{page}}&amp;&amp;玄幻::/list/xuanhuan/?page={{page}}&amp;&amp;都市::/list/dushi/?page={{page}}&amp;&amp;恐怖::/list/kongbu/?page={{page}}&amp;&amp;古风::/list/gufeng/?page={{page}}&amp;&amp;唯美::/list/weimei/?page={{page}}&amp;&amp;治愈::/list/zhiyu/?page={{page}}&amp;&amp;穿越::/list/chuanyue/?page={{page}}&amp;&amp;恋爱::/list/lianai/?page={{page}}&amp;&amp;修真::/list/xiuzhen/?page={{page}}&amp;&amp;后宫::/list/hougong/?page={{page}}&amp;&amp;冒险::/list/maoxian/?page={{page}}&amp;&amp;搞笑::/list/gaoxiao/?page={{page}}&amp;&amp;彩虹::/list/caihong/?page={{page}}&amp;&amp;热血::/list/rexue/?page={{page}}&amp;&amp;暧昧::/list/aimei/?page={{page}}&amp;&amp;少年::/list/shaonian/?page={{page}}&amp;&amp;逆转::/list/nizhuan/?page={{page}}&amp;&amp;奇幻::/list/qihuan/?page={{page}}&amp;&amp;大女主::/list/danvzhu/?page={{page}}&amp;&amp;总裁::/list/zongcai/?page={{page}}&amp;&amp;少女::/list/shaonv/?page={{page}}&amp;&amp;美型::/list/meixing/?page={{page}}&amp;&amp;霸总::/list/bazong/?page={{page}}&amp;&amp;动作::/list/dongzuo/?page={{page}}&amp;&amp;其他::/list/qita/?page={{page}}&amp;&amp;少男::/list/shaonan/?page={{page}}&amp;&amp;生活::/list/shenghuo/?page={{page}}&amp;&amp;科幻::/list/kehuan/?page={{page}}&amp;&amp;漫客栈::/list/mankezhan/?page={{page}}&amp;&amp;悬疑::/list/xuanyi/?page={{page}}&amp;&amp;魔幻::/list/mohuan/?page={{page}}&amp;&amp;战争::/list/zhanzheng/?page={{page}}&amp;&amp;惊奇::/list/jingqi/?page={{page}}&amp;&amp;纯爱::/list/chunai/?page={{page}}&amp;&amp;独家::/list/dujia/?page={{page}}&amp;&amp;爆笑::/list/baoxiao/?page={{page}}&amp;&amp;惊险::/list/jingxian/?page={{page}}&amp;&amp;校园::/list/xiaoyuan/?page={{page}}&amp;&amp;蔷薇::/list/qiangwei/?page={{page}}&amp;&amp;魔法::/list/mofa/?page={{page}}&amp;&amp;青春::/list/qingchun/?page={{page}}&amp;&amp;战斗::/list/zhandou/?page={{page}}&amp;&amp;漫改::/list/mangai/?page={{page}}&amp;&amp;武侠::/list/wuxia/?page={{page}}&amp;&amp;僵尸::/list/jiangshi/?page={{page}}&amp;&amp;励志::/list/lizhi/?page={{page}}&amp;&amp;脑洞::/list/naodong/?page={{page}}&amp;&amp;重生::/list/zhongsheng/?page={{page}}&amp;&amp;剧情::/list/juqing/?page={{page}}&amp;&amp;复仇::/list/fuchou/?page={{page}}&amp;&amp;生化::/list/shenghua/?page={{page}}&amp;&amp;异族::/list/yizu/?page={{page}}&amp;&amp;推理::/list/tuili/?page={{page}}&amp;&amp;震撼::/list/zhenhan/?page={{page}}&amp;&amp;奇闻::/list/qiwen/?page={{page}}&amp;&amp;怪谈::/list/guaitan/?page={{page}}&amp;&amp;修仙::/list/xiuxian/?page={{page}}&amp;&amp;末世::/list/moshi/?page={{page}}&amp;&amp;耽美::/list/danmei/?page={{page}}&amp;&amp;日漫::/list/riman/?page={{page}}&amp;&amp;日常::/list/richang/?page={{page}}&amp;&amp;灵异::/list/lingyi/?page={{page}}&amp;&amp;竞技::/list/jingji/?page={{page}}&amp;&amp;历史::/list/lishi/?page={{page}}&amp;&amp;明星::/list/mingxing/?page={{page}}&amp;&amp;虐心::/list/nuexin/?page={{page}}&amp;&amp;美食::/list/meishi/?page={{page}}&amp;&amp;机甲::/list/jijia/?page={{page}}&amp;&amp;叛逆::/list/panni/?page={{page}}&amp;&amp;宠爱::/list/chongai/?page={{page}}&amp;&amp;幻想::/list/huanxiang/?page={{page}}&amp;&amp;装逼::/list/zhuangbi/?page={{page}}&amp;&amp;运动::/list/yundong/?page={{page}}&amp;&amp;古装::/list/guzhuang/?page={{page}}&amp;&amp;言情::/list/yanqing/?page={{page}}&amp;&amp;游戏::/list/youxi/?page={{page}}&amp;&amp;真人::/list/zhenren/?page={{page}}&amp;&amp;怀旧::/list/huaijiu/?page={{page}}&amp;&amp;情感::/list/qinggan/?page={{page}}&amp;&amp;仙侠::/list/xianxia/?page={{page}}&amp;&amp;神魔::/list/shenmo/?page={{page}}&amp;&amp;偶像::/list/ouxiang/?page={{page}}&amp;&amp;其它::/list/qita2/?page={{page}}&amp;&amp;女尊::/list/nvzun/?page={{page}}&amp;&amp;青年::/list/qingnian/?page={{page}}&amp;&amp;系统::/list/xitong/?page={{page}}&amp;&amp;娱乐圈::/list/yulequan/?page={{page}}&amp;&amp;格斗::/list/gedou/?page={{page}}&amp;&amp;萌系::/list/mengxi/?page={{page}}&amp;&amp;宫斗::/list/gongdou/?page={{page}}&amp;&amp;虐恋::/list/nuelian/?page={{page}}&amp;&amp;社会::/list/shehui/?page={{page}}&amp;&amp;神鬼::/list/shengui/?page={{page}}&amp;&amp;百合::/list/baihe/?page={{page}}&amp;&amp;智斗::/list/zhidou/?page={{page}}&amp;&amp;橘味::/list/juwei/?page={{page}}&amp;&amp;美少女::/list/meishaonv/?page={{page}}&amp;&amp;金手指::/list/jinshouzhi/?page={{page}}&amp;&amp;绅士::/list/shenshi/?page={{page}}&amp;&amp;女强::/list/nvqiang/?page={{page}}&amp;&amp;权谋::/list/quanmou/?page={{page}}&amp;&amp;宅斗::/list/zhaidou/?page={{page}}&amp;&amp;狐仙::/list/huxian/?page={{page}}&amp;&amp;鬼怪::/list/guiguai/?page={{page}}&amp;&amp;死后世界::/list/sihoushijie/?page={{page}}&amp;&amp;宫廷::/list/gongting/?page={{page}}&amp;&amp;体育::/list/tiyu/?page={{page}}&amp;&amp;知音漫客::/list/zhiyinmanke/?page={{page}}&amp;&amp;恶搞::/list/egao/?page={{page}}&amp;&amp;日本::/list/riben/?page={{page}}&amp;&amp;浪漫::/list/langman/?page={{page}}&amp;&amp;节操::/list/jiecao/?page={{page}}&amp;&amp;血腥::/list/xuexing/?page={{page}}&amp;&amp;探案::/list/tanan/?page={{page}}&amp;&amp;爽::/list/shuang/?page={{page}}&amp;&amp;同人::/list/tongren/?page={{page}}&amp;&amp;福利::/list/fuli/?page={{page}}&amp;&amp;御姐::/list/yujie/?page={{page}}&amp;&amp;萝莉::/list/luoli/?page={{page}}&amp;&amp;甜宠::/list/tianchong/?page={{page}}&amp;&amp;少儿::/list/shaoer/?page={{page}}&amp;&amp;豪门::/list/haomen/?page={{page}}&amp;&amp;特工::/list/tegong/?page={{page}}&amp;&amp;美女::/list/meinv/?page={{page}}&amp;&amp;间谍::/list/jiandie/?page={{page}}&amp;&amp;男神::/list/nanshen/?page={{page}}&amp;&amp;悬疑、惊悚::/list/xuanyijingsong/?page={{page}}&amp;&amp;兽耳::/list/shouer/?page={{page}}&amp;&amp;军阀::/list/junfa/?page={{page}}&amp;&amp;民国::/list/minguo/?page={{page}}&amp;&amp;漫画一番::/list/manhuayifan/?page={{page}}&amp;&amp;女王点坑::/list/nvwangdiankeng/?page={{page}}&amp;&amp;喜欢::/list/xihuan/?page={{page}}&amp;&amp;异能::/list/yineng/?page={{page}}&amp;&amp;栏目::/list/lanmu/?page={{page}}&amp;&amp;短篇::/list/duanpian/?page={{page}}&amp;&amp;丧尸::/list/sangshi/?page={{page}}&amp;&amp;改编::/list/gaibian/?page={{page}}&amp;&amp;机战::/list/jizhan/?page={{page}}&amp;&amp;惊悚::/list/jingsong/?page={{page}}&amp;&amp;欢乐向::/list/huanlexiang/?page={{page}}&amp;&amp;爱情::/list/aiqing/?page={{page}}&amp;&amp;四格::/list/sige/?page={{page}}&amp;&amp;轻小说::/list/qingxiaoshuo/?page={{page}}&amp;&amp;架空::/list/jiakong/?page={{page}}&amp;&amp;轻松::/list/qingsong/?page={{page}}&amp;&amp;科技::/list/keji/?page={{page}}&amp;&amp;正能量::/list/zhengnengliang/?page={{page}}&amp;&amp;宅系::/list/zhaixi/?page={{page}}&amp;&amp;职场::/list/zhichang/?page={{page}}&amp;&amp;舰娘::/list/jianniang/?page={{page}}&amp;&amp;性转换::/list/xingzhuanhuan/?page={{page}}&amp;&amp;乡村::/list/xiangcun/?page={{page}}&amp;&amp;正剧::/list/zhengju/?page={{page}}&amp;&amp;纠结::/list/jiujie/?page={{page}}&amp;&amp;AA::/list/AA/?page={{page}}&amp;&amp;异世界::/list/yishijie/?page={{page}}&amp;&amp;日更::/list/rigeng/?page={{page}}&amp;&amp;精品::/list/jingpin/?page={{page}}&amp;&amp;新作::/list/xinzuo/?page={{page}}&amp;&amp;音乐舞蹈::/list/yinyuewudao/?page={{page}}&amp;&amp;宠物::/list/chongwu/?page={{page}}&amp;&amp;温馨::/list/wenxin/?page={{page}}&amp;&amp;段子::/list/duanzi/?page={{page}}&amp;&amp;少女爱情::/list/shaonvaiqing/?page={{page}}&amp;&amp;东方::/list/dongfang/?page={{page}}&amp;&amp;侦探::/list/zhentan/?page={{page}}&amp;&amp;逆袭::/list/nixi/?page={{page}}&amp;&amp;召唤兽::/list/zhaohuanshou/?page={{page}}&amp;&amp;伪娘::/list/weiniang/?page={{page}}&amp;&amp;秀吉::/list/xiuji/?page={{page}}&amp;&amp;吸血::/list/xixie/?page={{page}}&amp;&amp;血族::/list/xuezu/?page={{page}}&amp;&amp;三角恋::/list/sanjiaolian/?page={{page}}&amp;&amp;前世::/list/qianshi/?page={{page}}&amp;&amp;吸血鬼::/list/xixiegui/?page={{page}}&amp;&amp;轮回::/list/lunhui/?page={{page}}&amp;&amp;种田::/list/zhongtian/?page={{page}}&amp;&amp;魔王::/list/mowang/?page={{page}}&amp;&amp;狠西游::/list/henxiyou/?page={{page}}&amp;&amp;西游记::/list/xiyouji/?page={{page}}&amp;&amp;青青树::/list/qingqingshu/?page={{page}}&amp;&amp;宠婚::/list/chonghun/?page={{page}}&amp;&amp;可爱::/list/keai/?page={{page}}&amp;&amp;小僵尸::/list/xiaojiangshi/?page={{page}}&amp;&amp;家庭::/list/jiating/?page={{page}}&amp;&amp;婚姻::/list/hunyin/?page={{page}}&amp;&amp;恋爱生活::/list/lianaishenghuo/?page={{page}}&amp;&amp;感动::/list/gandong/?page={{page}}&amp;&amp;神话::/list/shenhua/?page={{page}}&amp;&amp;未来::/list/weilai/?page={{page}}&amp;&amp;故事漫画::/list/gushimanhua/?page={{page}}&amp;&amp;其他漫画::/list/qitamanhua/?page={{page}}&amp;&amp;爽流::/list/shuangliu/?page={{page}}&amp;&amp;烧脑::/list/shaonao/?page={{page}}&amp;&amp;有妖气::/list/youyaoqi/?page={{page}}&amp;&amp;绘本::/list/huiben/?page={{page}}&amp;&amp;侦探推理::/list/zhentantuili/?page={{page}}&amp;&amp;史诗::/list/shishi/?page={{page}}&amp;&amp;商战::/list/shangzhan/?page={{page}}&amp;&amp;颜艺::/list/yanyi/?page={{page}}&amp;&amp;恐怖悬疑::/list/kongbuxuanyi/?page={{page}}&amp;&amp;内涵::/list/neihan/?page={{page}}&amp;&amp;性转::/list/xingzhuan/?page={{page}}&amp;&amp;高清单行::/list/gaoqingdanxing/?page={{page}}&amp;&amp;墨瞳::/list/motong/?page={{page}}&amp;&amp;漫画::/list/manhua/?page={{page}}&amp;&amp;婚爱::/list/hunai/?page={{page}}&amp;&amp;西方魔幻::/list/xifangmohuan/?page={{page}}&amp;&amp;猎奇::/list/lieqi/?page={{page}}&amp;&amp;致郁::/list/zhiyu2/?page={{page}}&amp;&amp;末日::/list/mori/?page={{page}}&amp;&amp;伦理::/list/lunli/?page={{page}}&amp;&amp;乙女::/list/yinv/?page={{page}}&amp;&amp;神仙::/list/shenxian/?page={{page}}&amp;&amp;怪物::/list/guaiwu/?page={{page}}&amp;&amp;神豪::/list/shenhao/?page={{page}}&amp;&amp;霸总.都市::/list/bazongdushi/?page={{page}}&amp;&amp;妖怪::/list/yaoguai/?page={{page}}&amp;&amp;主仆::/list/zhupu/?page={{page}}&amp;&amp;高甜::/list/gaotian/?page={{page}}&amp;&amp;限制级::/list/xianzhiji/?page={{page}}&amp;&amp;音乐::/list/yinyue/?page={{page}}&amp;&amp;韩漫::/list/hanman/?page={{page}}&amp;&amp;电竞::/list/dianjing/?page={{page}}&amp;&amp;ゆり::/list/unknown/?page={{page}}&amp;&amp;兄弟情::/list/xiongdiqing/?page={{page}}&amp;&amp;暖萌::/list/nuanmeng/?page={{page}}&amp;&amp;豪快::/list/haokuai/?page={{page}}&amp;&amp;幽默::/list/youmo/?page={{page}}&amp;&amp;完结::/list/wanjie/?page={{page}}&amp;&amp;亲情::/list/qinqing/?page={{page}}&amp;&amp;橘系::/list/juxi/?page={{page}}&amp;&amp;</string><key>lastUpdateTime</key><integer>1610019714030</integer><key>ruleBookInfo</key><dict><key>author</key><string>class.txtItme.0@text</string><key>intro</key><string>id.full-des@text##介绍:</string><key>lastChapter</key><string>class.chapter-warp.0@tag.ul@tag.li.-2@tag.a@text</string><key>name</key><string>id.comicName@text</string></dict><key>ruleContent</key><dict><key>content</key><string>@js:
+header={"Referer":baseUrl};
+headers={"headers":JSON.stringify(header)};
+imgl=eval(result.match(/var chapterImages = (\[[\s\S]+?\])/)[1]);
+host=result.match(/var nodeHost = "([^"]*)";/)[1].replace(/\\/g,'');
+Cih='https://res.zuimh.com';
+Cirh='https://respc.zuimh.com';
+res0826='https://res0826.zuimh.com';
+html='';
+function get7ImageUrl(image) {
+    if (image.match(/^(\/r\/?)/i)) {
+        return res0826 + image
+    } else if (image.match(/^(\/|images?)/i)) {
+        return Cih + image
+    }
+}
+
+for(i in imgl){
+if(!host){
+url=get7ImageUrl(imgl[i]);
+}else{
+url=imgl[i]
+}
+html+='&lt;img src="'+url+','+JSON.stringify(headers)+'"&gt;\n'
+}
+html</string><key>imageStyle</key><string>FULL</string><key>nextContentUrl</key><string></string><key>webJs</key><string></string></dict><key>ruleExplore</key><dict><key>author</key><string>class.info@text##作者:</string><key>bookList</key><string>class.list-comic</string><key>bookUrl</key><string>tag.a.0@href</string><key>coverUrl</key><string>img@src</string><key>intro</key><string>id.full-des@text</string><key>name</key><string>class.txtA@text</string></dict><key>ruleSearch</key><dict><key>author</key><string>tag.p.0@text</string><key>bookList</key><string>class.itemBox</string><key>bookUrl</key><string>tag.a.0@href</string><key>coverUrl</key><string>img@src</string><key>kind</key><string>tag.p.1@text##\|##,</string><key>lastChapter</key><string>tag.a.-1@text</string><key>name</key><string>class.title@text</string></dict><key>ruleToc</key><dict><key>chapterList</key><string>id.chapter-list-1@li!-1@a||id.chapter-list-2@li!-1@a</string><key>chapterName</key><string>text</string><key>chapterUrl</key><string>href##m\.##www.</string></dict><key>searchUrl</key><string>https://m.zuimh.com/search/?keywords={{key}}</string><key>weight</key><integer>0</integer></dict><key>status</key><integer>1</integer><key>star</key><integer>4</integer><key>add_time</key><string>2023-06-01 16:18:46</string><key>is_ceshi</key><integer>2</integer><key>is_app</key><integer>2</integer></dict></array></plist>
